@@ -5,12 +5,11 @@ namespace CRM.Models.General
     public class Day
     {
         public DateTime CurrentDate { get; }
-        public ToDoItem[] ToDoItems { get; }
+        public List<ToDoItem>? ToDoItems { get; set; }
 
-        public Day(DateTime currentDate, ToDoItem[] toDoItems)
+        public Day(DateTime currentDate)
         {
             CurrentDate = currentDate;
-            ToDoItems = toDoItems;
         }
     }
 }
