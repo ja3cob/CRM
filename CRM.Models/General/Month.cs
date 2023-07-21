@@ -1,4 +1,4 @@
-﻿namespace CRM.Models
+﻿namespace CRM.Models.General
 {
     public class Month
     {
