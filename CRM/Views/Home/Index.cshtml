@@ -38,7 +38,10 @@
                                         <p class="todoitems-item-text">
                                             @item.Text
                                         </p>
+                                        @if (Model.MonthNumber == Model.Days[i].CurrentDate.Month)
+                                        {
                                         <div class="todoitems-item-details"></div>
+                                        }
                                     </div>
                                 }
                             </div>
@@ -87,13 +90,17 @@
         function displayTodoitemDetails(item) {
             const rect = item.getBoundingClientRect();
             const details = item.querySelector(".todoitems-item-details");
+            if(details == undefined) { return; }
 
             details.style.left = (rect.left + item.offsetWidth + 2) + 'px';
             details.style.top = rect.top + 'px';
             details.classList.add("show");
         }
         function hideTodoitemDetails(item) {
-            item.querySelector(".todoitems-item-details").classList.remove("show");
+            const details = item.querySelector(".todoitems-item-details");
+            if (details == undefined) { return; }
+
+            details.classList.remove("show");
         }
     </script>
 }
