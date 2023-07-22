@@ -31,7 +31,7 @@
                                 @for(int j = 0; j < Model.Days[i].ToDoItems?.Count; j++)
                                 {
                                     var item = Model.Days[i].ToDoItems[j];
-                                    <div id="@(i)_@j" class="todoitems-item" onmouseover="displayTodoitemDetails(this)" onmouseout="hideTodoitemDetails(this)">
+                                    <div class="todoitems-item" onmouseover="displayTodoitemDetails(this)" onmouseout="hideTodoitemDetails(this)">
                                         <p class="todoitems-item-time">
                                             @(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))
                                         </p>
@@ -40,7 +40,7 @@
                                         </p>
                                         @if (Model.MonthNumber == Model.Days[i].CurrentDate.Month)
                                         {
-                                        <div class="todoitems-item-details"></div>
+                                        <div class="todoitems-item-details">
                                             <div class="todoitems-item-details-header">
                                                 <span class="todoitems-item-details-time">@(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))</span>
                                                 <div class="c100 p33 small">
@@ -51,6 +51,10 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <p class="todoitems-item-details-text">@item.Text</p>
+                                            <p class="todoitems-item-details-assignedto">Przydzielony: @item.AssignedTo.Username</p>
+                                            <p class="todoitems-item-details-createdby">Utworzył: @item.CreatedBy.Username</p>
+                                        </div>
                                         }
                                     </div>
                                 }
