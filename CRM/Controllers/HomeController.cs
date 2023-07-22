@@ -11,7 +11,7 @@ namespace CRM.Controllers
 
         public IActionResult Index()
         {
-            return View(new IndexViewModel(CalendarService.GenerateMonth(DateTime.Now.Month, DateTime.Now.Year)));
+            return View(CalendarService.GenerateMonth(DateTime.Now.Month, DateTime.Now.Year));
         }
         [HttpPost]
         [Route("[controller]")]
