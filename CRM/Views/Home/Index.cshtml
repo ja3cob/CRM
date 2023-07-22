@@ -21,10 +21,10 @@
                 @for (int i = 0; i < Model.Days.Length; i++)
                 {
                     @if(Model.Days[i].CurrentDate.DayOfWeek == DayOfWeek.Monday)
-                        {
+                    { 
                         @Html.Raw("<tr>"); 
                     }
-                            <td>
+                    <td>
                         <div @(Model.MonthNumber != Model.Days[i].CurrentDate.Month ? "class=different-month" : "")>
                             <p>@Model.Days[i].CurrentDate.Day</p>
                             <div class="todoitems">
@@ -43,7 +43,7 @@
                                 }
                             </div>
                         </div>
-                            </td>
+                    </td>
                     @if (Model.Days[i].CurrentDate.DayOfWeek == DayOfWeek.Sunday)
                     {
                         @Html.Raw("</tr>");
@@ -83,6 +83,17 @@
             .catch(function (error) {
                 console.error("Error:", error);
             });
+        }
+        function displayTodoitemDetails(item) {
+            const rect = item.getBoundingClientRect();
+            const details = item.querySelector(".todoitems-item-details");
+
+            details.style.left = (rect.left + item.offsetWidth + 2) + 'px';
+            details.style.top = rect.top + 'px';
+            details.classList.add("show");
+        }
+        function hideTodoitemDetails(item) {
+            item.querySelector(".todoitems-item-details").classList.remove("show");
         }
     </script>
 }
