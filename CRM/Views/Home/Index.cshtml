@@ -41,6 +41,16 @@
                                         @if (Model.MonthNumber == Model.Days[i].CurrentDate.Month)
                                         {
                                         <div class="todoitems-item-details"></div>
+                                            <div class="todoitems-item-details-header">
+                                                <span class="todoitems-item-details-time">@(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))</span>
+                                                <div class="c100 p33 small">
+                                                    <span>33%</span>
+                                                    <div class="slice">
+                                                        <div class="bar"></div>
+                                                        <div class="fill"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         }
                                     </div>
                                 }
@@ -63,6 +73,7 @@
 @section Styles
 {
     <link rel="stylesheet" href="~/css/Index.css"/>
+    <link rel="stylesheet" href="~/css/PercentageCircle.css"/>
 }
 
 @section Scripts 
