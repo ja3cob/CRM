@@ -43,8 +43,8 @@
                                         <div class="todoitems-item-details">
                                             <div class="todoitems-item-details-header">
                                                 <span class="todoitems-item-details-time">@(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))</span>
-                                                <div class="c100 p33 small">
-                                                    <span>33%</span>
+                                                <div class="c100 @(Html.Raw("p") + item.Progress.ToString()) small">
+                                                    <span>@item.Progress.ToString()%</span>
                                                     <div class="slice">
                                                         <div class="bar"></div>
                                                         <div class="fill"></div>
