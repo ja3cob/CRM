@@ -18,17 +18,36 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < Model.Month.Days.Length; )
+                @for (int i = 0; i < Model.Days.Length; i++)
                 {
-                    <tr>
-                        @do
+                    @if(Model.Days[i].CurrentDate.DayOfWeek == DayOfWeek.Monday)
                         {
+                        @Html.Raw("<tr>"); 
+                    }
                             <td>
-                                @Model.Month.Days[i].CurrentDate.Day
+                        <div @(Model.MonthNumber != Model.Days[i].CurrentDate.Month ? "class=different-month" : "")>
+                            <p>@Model.Days[i].CurrentDate.Day</p>
+                            <div class="todoitems">
+                                @for(int j = 0; j < Model.Days[i].ToDoItems?.Count; j++)
+                                {
+                                    var item = Model.Days[i].ToDoItems[j];
+                                    <div id="@(i)_@j" class="todoitems-item" onmouseover="displayTodoitemDetails(this)" onmouseout="hideTodoitemDetails(this)">
+                                        <p class="todoitems-item-time">
+                                            @(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))
+                                        </p>
+                                        <p class="todoitems-item-text">
+                                            @item.Text
+                                        </p>
+                                        <div class="todoitems-item-details"></div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
                             </td>
-                            i++;
-                        } while(i < Model.Month.Days.Length && Model.Month.Days[i].CurrentDate.DayOfWeek != DayOfWeek.Monday);
-                    </tr>
+                    @if (Model.Days[i].CurrentDate.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        @Html.Raw("</tr>");
+                    }
                 }
             </tbody>
         </table>
