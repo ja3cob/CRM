@@ -5,19 +5,18 @@ using System.Diagnostics;
 
 namespace CRM.Controllers
 {
-    public class HomeController : Controller
+    public class CalendarController : Controller
     {
-        public HomeController() { }
+        public CalendarController() { }
 
-        public IActionResult Index()
+        public IActionResult Calendar([FromRoute] int? year, [FromRoute] int? month)
         {
-            return View(CalendarService.GenerateMonth(DateTime.Now.Month, DateTime.Now.Year));
-        }
-        [HttpPost]
-        [Route("[controller]")]
-        public IActionResult Post()
-        {
-            return Ok("cipka");
+            if(!year.HasValue || !month.HasValue)
+            {
+                year = DateTime.Now.Year;
+                month = DateTime.Now.Month;
+            }
+            return View(CalendarService.GenerateMonth(month.Value, year.Value));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
