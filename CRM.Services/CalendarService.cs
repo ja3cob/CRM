@@ -31,7 +31,7 @@ namespace CRM.Services
             string lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin volutpat, eros eget posuere venenatis, velit nisl ullamcorper tortor, non eleifend elit libero eu quam. Sed id facilisis nisi.";
             days[4].ToDoItems = new List<ToDoItem>
             {
-                new ToDoItem(startTime, endTime, lorem, 0, testPerson, testPerson),
+                new ToDoItem(startTime, endTime, lorem, 15, testPerson, testPerson),
                 new ToDoItem(startTime, endTime, lorem, 0, testPerson, testPerson),
                 new ToDoItem(startTime, endTime, lorem, 0, testPerson, testPerson),
                 new ToDoItem(startTime, endTime, lorem, 0, testPerson, testPerson),
@@ -44,7 +44,7 @@ namespace CRM.Services
                 new ToDoItem(startTime, endTime, lorem, 0, testPerson, testPerson),
             };
 
-            return new Month(days.ToArray(), month, year);
+            return new Month(new DateTime(year, month, 1), days.ToArray());
         }
     }
 }

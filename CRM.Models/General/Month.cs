@@ -2,15 +2,13 @@
 {
     public class Month
     {
-        public int MonthNumber { get; }
-        public int Year { get; }
+        public DateTime CurrentDate { get; }
         public Day[] Days { get; }
 
-        public Month(Day[] days, int monthNumber, int year)
+        public Month(DateTime currentDate, Day[] days)
         {
+            CurrentDate = currentDate;
             Days = days;
-            MonthNumber = monthNumber;
-            Year = year;
         }
     }
 }
