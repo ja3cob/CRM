@@ -1,13 +1,52 @@
-﻿.calendar {
+﻿.tasks-calendar {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.tasks-calendar-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: end;
+    margin-bottom: 10px;
+}
+
+.tasks-calendar-buttons {
+    font-size: 0;
+}
+.tasks-calendar-buttons * {
+    font-size: 1rem;
+}
+a {
+    text-decoration: none;
+}
+.calendar-title {
+    font-weight: 100;
+    text-align: center;
+}
+.btn-arrow {
+    padding: 5px 10px;
+    margin: 0;
+    border-radius: 0;
+}
+.arrow-left {
+    border-right: 0;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.arrow-right {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.calendar {
     --day-number-size: 1.2rem;
     --common-margin: 5px;
     --border-color: #d3d3d3;
     border-right: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
     border-spacing: 0;
-    margin: 0 auto;
     table-layout: fixed;
-    width: 70%;
+    width: 100%;
     min-height: 80%;
 }
 
@@ -102,7 +141,7 @@
     background-color: white;
     border: 1px solid var(--border-color);
     z-index: 99;
-    transition: all 0.3s;
+    transition: visibility 0.3s, opacity 0.3s;
     padding: 5px;
 }
 
