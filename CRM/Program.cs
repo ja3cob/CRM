@@ -28,8 +28,8 @@ namespace CRM
 
             app.MapControllerRoute(
                 name: "calendar",
-                pattern: "calendar/{year?}/{month?}",
-                defaults: new {controller = "Calendar", action = "Calendar"});
+                pattern: "calendar/{year:int?}/{month:int?}",
+                defaults: new { controller = "Calendar", action = "Calendar" });
             app.MapControllerRoute(
                 name: "default",
                 pattern: "/",

@@ -9,12 +9,17 @@ namespace CRM.Controllers
     {
         public CalendarController() { }
 
+        [HttpGet]
         public IActionResult Calendar([FromRoute] int? year, [FromRoute] int? month)
         {
             if(!year.HasValue || !month.HasValue)
             {
                 year = DateTime.Now.Year;
                 month = DateTime.Now.Month;
+            }
+            if(month > 12 || month < 1)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
             }
             return View(CalendarService.GenerateMonth(month.Value, year.Value));
         }
