@@ -29,9 +29,9 @@
     background-image: url('data:image/svg+xml;charset=utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 98" preserveAspectRatio="none"><path d="M1 98l10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1-10-1 10-1L1 8l10-1L1 6l10-1L1 4l10-1L1 2l10-1L1 0H0v98z" fill="%23F2F4F8"/></svg>');
 }
 
-﻿.tasks-calendar {
-    margin: 0 auto;
-    width: 70%;
+.tasks-calendar {
+    padding: 50px;
+    background-color: var(--color-background);
 }
 
 .tasks-calendar-header {
@@ -53,9 +53,10 @@ a {
 .calendar-title {
     font-weight: 100;
     text-align: center;
+    white-space: nowrap;
 }
 .btn-arrow {
-    padding: 5px 10px;
+    padding: 3px 10px 5px;
     margin: 0;
     border-radius: 0;
     color: var(--color-accent);
@@ -75,7 +76,7 @@ a {
 }
 
 .calendar {
-    --day-number-size: 1.2rem;
+    --day-number-size: 1.7rem;
     --common-margin: 5px;
     --border-color: #d3d3d3;
     border-right: 1px solid var(--border-color);
@@ -98,7 +99,7 @@ a {
 }
 
 .calendar tbody td > div {
-    height: 150px;
+    height: 130px;
 }
 
 .calendar td > div > p {
@@ -112,9 +113,8 @@ a {
     overflow-x: hidden;
     overflow-y: scroll;
     scrollbar-width: none;
-    height: calc(100% - var(--common-margin) * 3 - var(--day-number-size));
-    margin: var(--common-margin);
-    padding: 0 var(--common-margin);
+    height: calc(100% - var(--common-margin) - var(--day-number-size));
+    padding: 0 3px;
 }
 
 /*Scrollbar style*/
@@ -144,7 +144,7 @@ a {
     background-color: var(--color-primary);
     margin-bottom: 5px;
     border-radius: 9px;
-    padding: 2px 4px;
+    padding: 4px 6px;
     text-align: left;
     cursor: pointer;
 }
@@ -158,11 +158,11 @@ a {
 }
 
 .todoitems-item-time {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .todoitems-item-text {
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
@@ -181,7 +181,7 @@ a {
     border: 1px solid var(--border-color);
     z-index: 99;
     transition: visibility 0.3s, opacity 0.3s;
-    padding: 5px;
+    padding: 20px;
 }
 
 .todoitems-item-details.show {
