@@ -206,3 +206,34 @@ a {
 .c100 span {
     transform: scale(1.5);
 }
+
+.tasks-controls {
+    padding: 50px;
+}
+.task-editor-title {
+    color: var(--color-background);
+    text-align: center;
+}
+.input-wrapper {
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin: 10px auto;
+}
+.input-text {
+    resize: none;
+}
+.incorrect-input {
+    position: absolute;
+    left: 105%;
+    top: 0;
+    content: "";
+    color: white;
+    background-color: red;
+    width: 100px;
+    height: 100%;
+}
+.time-range {
+    display: inline-flex;
+    justify-content: center;
+}
