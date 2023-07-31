@@ -11,10 +11,11 @@ namespace CRM.Services
             var days = new List<Day>();
 
             var tempDay = new DateTime(year, month, 1);
+            days.Add(new Day(tempDay));
 
-            for(int i = 0; tempDay.AddDays(-i).DayOfWeek != DayOfWeek.Sunday; i++) 
+            for(int i = -1; days[0].CurrentDate.DayOfWeek != DayOfWeek.Monday; i--) 
             {
-                days.Insert(0, new Day(tempDay.AddDays(-i)));
+                days.Insert(0, new Day(tempDay.AddDays(i)));
             }
             tempDay = tempDay.AddDays(1);
 
@@ -29,14 +30,14 @@ namespace CRM.Services
             var endTime = startTime.AddHours(3);
 
             string lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin volutpat, eros eget posuere venenatis, velit nisl ullamcorper tortor, non eleifend elit libero eu quam. Sed id facilisis nisi.";
-            days[4].ToDoItems = new List<ToDoItem>
+            days[11].ToDoItems = new List<ToDoItem>
             {
                 new ToDoItem(startTime, endTime, lorem, 15, testPerson, testPerson),
                 new ToDoItem(startTime, endTime, lorem, 0, testPerson, testPerson),
                 new ToDoItem(startTime, endTime, lorem, 0, testPerson, testPerson),
                 new ToDoItem(startTime, endTime, lorem, 0, testPerson, testPerson),
             };
-            days[2].ToDoItems = new List<ToDoItem>
+            days[9].ToDoItems = new List<ToDoItem>
             {
                 new ToDoItem(startTime, endTime, lorem, 0, testPerson, testPerson),
                 new ToDoItem(startTime, endTime, lorem, 0, testPerson, testPerson),
