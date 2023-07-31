@@ -3,4 +3,10 @@
     margin: 0;
     padding: 0;
     font-family: 'PT Sans', sans-serif;
+    --color-background: #F2F4F8;
+    --color-primary: #6495ED;
+    --color-secondary: #C7D0E0;
+    --color-text: #05070A;
+    --color-accent: #4E648D;
+    color: var(--color-text);
 }
