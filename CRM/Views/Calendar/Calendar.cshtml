@@ -78,8 +78,36 @@
             </tbody>
         </table>
     </div>
+    <section class="tasks-spikes"></section>
     <div class="tasks-controls">
-        <button onclick="postDataUsingFetch()"></button>
+        <div class="task-editor">
+            <h1 class="task-editor-title">Edytuj / stwórz zadanie</h1>
+            <form class="task-editor-form" action="">
+                <div class="input-wrapper">
+                    <input class="input-date" name="date" type="date" />
+                    <div class="incorrect-input"></div>
+                </div>
+                <div class="input-wrapper">
+                    <section class="time-range">
+                        <input type="time" name="start-time"/>
+                         - 
+                        <input type="time" name="end-time"/>
+                    </section>
+                    <div class="incorrect-input"></div>
+                </div>
+                <div class="input-wrapper">
+                    <textarea class="input-text" name="text"></textarea>
+                    <div class="incorrect-input"></div>
+                </div>
+                <div class="input-wrapper">
+                    <select name="assigned-person">
+
+                    </select>
+                    <div class="incorrect-input"></div>
+                </div>
+                <button type="button" onclick="saveTask()" style="width: 60px; height: 20px;"></button>
+            </form>
+        </div>
     </div>
 </div>
 
