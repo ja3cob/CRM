@@ -98,7 +98,7 @@ a {
     opacity: 0.3;
 }
 
-.calendar tbody td > div {
+.calendar-day {
     height: 130px;
 }
 
