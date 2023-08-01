@@ -230,6 +230,19 @@ a {
 }
 .input-text {
     resize: none;
+.input-progress-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.input-progress {
+    width: 80%;
+}
+.input-progress-value {
+    text-align: right;
+    width: 20%;
+    color: var(--color-background);
 }
 .incorrect-input {
     opacity: 0;
