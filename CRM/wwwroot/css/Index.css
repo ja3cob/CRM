@@ -217,6 +217,9 @@ a {
     color: var(--color-background);
     text-align: center;
 }
+.task-editor-form {
+    margin-top: 30px;
+}
 .input-wrapper {
     position: relative;
     display: block;
