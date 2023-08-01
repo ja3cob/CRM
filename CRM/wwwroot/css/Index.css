@@ -225,6 +225,8 @@ a {
     display: block;
     width: fit-content;
     margin: 10px auto;
+.time-range > i {
+    color: var(--color-background);
 }
 .input-text {
     resize: none;
