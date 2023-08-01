@@ -76,7 +76,7 @@ a {
 }
 
 .calendar {
-    --day-number-size: 1.7rem;
+    --day-number-size: 1rem;
     --common-margin: 5px;
     --border-color: #d3d3d3;
     border-right: 1px solid var(--border-color);
