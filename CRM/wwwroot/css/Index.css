@@ -2,6 +2,7 @@
     display: flex;
     --calendar-color: #F0F2EF;
     background-color: var(--color-accent);
+    height: 80vh;
 }
 
 .tasks-container > * {
@@ -116,7 +117,7 @@ a {
     overflow-x: hidden;
     overflow-y: scroll;
     scrollbar-width: none;
-    height: calc(100% - var(--common-margin) - var(--day-number-size) - 2px);
+    height: calc(100% - var(--common-margin) - var(--day-number-size) - 5px);
     padding: 0 3px;
 }
 
