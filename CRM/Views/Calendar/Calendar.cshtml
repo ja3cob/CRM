@@ -34,7 +34,7 @@
                         @Html.Raw("<tr>"); 
                     }
                     <td>
-                        <div class="calendar-day @(Model.CurrentDate.Month != Model.Days[i].CurrentDate.Month ? "class=different-month" : "")">
+                        <div class="calendar-day @(Model.CurrentDate.Month != Model.Days[i].CurrentDate.Month ? "different-month" : "")">
                             <p>@Model.Days[i].CurrentDate.Day</p>
                             <div class="todoitems">
                                 @for(int j = 0; j < Model.Days[i].ToDoItems?.Count; j++)
