@@ -85,7 +85,7 @@
             <form class="task-editor-form" action="">
                 <div class="input-wrapper">
                     <input class="input-date" name="date" type="date" />
-                    <div class="incorrect-input"></div>
+                    <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
                 </div>
                 <div class="input-wrapper">
                     <section class="time-range">
@@ -93,17 +93,17 @@
                          - 
                         <input type="time" name="end-time"/>
                     </section>
-                    <div class="incorrect-input"></div>
+                    <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
                 </div>
                 <div class="input-wrapper">
-                    <textarea class="input-text" name="text"></textarea>
-                    <div class="incorrect-input"></div>
+                    <textarea class="input-text" name="text" placeholder="Treść..."></textarea>
+                    <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
                 </div>
                 <div class="input-wrapper">
                     <select name="assigned-person">
 
                     </select>
-                    <div class="incorrect-input"></div>
+                    <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
                 </div>
                 <button type="button" onclick="saveTask()" style="width: 60px; height: 20px;"></button>
             </form>

@@ -227,16 +227,26 @@ a {
     resize: none;
 }
 .incorrect-input {
+    opacity: 0;
     position: absolute;
-    left: 105%;
-    top: 0;
-    content: "";
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
     color: white;
     background-color: red;
-    width: 100px;
-    height: 100%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: opacity 1s;
 }
-.time-range {
-    display: inline-flex;
-    justify-content: center;
+.incorrect-input.show {
+    opacity: 1;
+}
+.incorrect-input > i {
+    font-size: 72%;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -49%);
 }
