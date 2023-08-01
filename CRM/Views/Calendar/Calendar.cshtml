@@ -111,6 +111,10 @@
                         <span class="input-progress-value">0%</span>
                 </div>
                 </div>
+                <div class="task-editor-buttons">
+                    <button class="btn btn--outline" type="button">Wyczyść</button>
+                    <button class="btn btn--primary" type="button" onclick="saveTask()">Zapisz</button>
+                </div>
             </form>
         </div>
     </div>
@@ -125,13 +129,11 @@
 @section Scripts 
 {
     <script>
-        window.addEventListener("resize", adjustCells);
-        function adjustCells() {
-            const tableCells = document.querySelectorAll(".calendar-day");
-            const width = tableCells[0].offsetWidth;
-            tableCells.forEach(cell => { 
-                cell.style.height = width + "px";
-            });
+        function updateProgressValue(progress) {
+            document.querySelector(".input-progress-value").innerHTML = progress.value + '%';
+        }
+        function saveTask() {
+            alert(document.querySelector(".task-editor-form [name=date]").value);
         }
         async function postDataUsingFetch() {
             fetch("/Home", {

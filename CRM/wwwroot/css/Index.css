@@ -245,6 +245,15 @@ a {
     width: 20%;
     color: var(--color-background);
 }
+.task-editor-buttons {
+    display: flex;
+    gap: 1rem;
+}
+.task-editor-buttons > button {
+    flex: 1;
+    font-size: 2rem;
+}
+
 .incorrect-input {
     opacity: 0;
     position: absolute;
