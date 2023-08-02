@@ -100,8 +100,12 @@
                     <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
                 </div>
                 <div class="input-wrapper">
-                    <select name="assigned-person">
-
+                    <select class="select-assigned-person" name="assigned-person" onchange="updateSelect(this)">
+                        <option value="default" selected disabled hidden>Przydzielony...</option>
+                        <option>test</option>
+                        <option>test</option>
+                        <option>test</option>
+                        <option>test</option>
                     </select>
                     <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
                 </div>
@@ -129,8 +133,12 @@
 @section Scripts 
 {
     <script>
+        function updateSelect(select) {
+            select.style.color = "black";
+        }
         function updateProgressValue(progress) {
-            document.querySelector(".input-progress-value").innerHTML = progress.value + '%';
+            document.querySelector(".input-progress-value").innerHTML = progress + '%';
+        }
         function clearEditor() {
             const inputs = document.querySelectorAll(".task-editor-form input, .input-text");
             inputs.forEach(input => input.value = "");
