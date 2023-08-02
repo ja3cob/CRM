@@ -112,7 +112,7 @@
                 </div>
                 </div>
                 <div class="task-editor-buttons">
-                    <button class="btn btn--outline" type="button">Wyczyść</button>
+                    <button class="btn btn--outline" type="button" onclick="clearEditor()">Wyczyść</button>
                     <button class="btn btn--primary" type="button" onclick="saveTask()">Zapisz</button>
                 </div>
             </form>
@@ -131,6 +131,17 @@
     <script>
         function updateProgressValue(progress) {
             document.querySelector(".input-progress-value").innerHTML = progress.value + '%';
+        function clearEditor() {
+            const inputs = document.querySelectorAll(".task-editor-form input, .input-text");
+            inputs.forEach(input => input.value = "");
+
+            const assignedPerson = document.querySelector(".select-assigned-person");
+            assignedPerson.value = "default";
+            assignedPerson.style.color = "gray";
+
+            const inputProgress = document.querySelector(".input-progress");
+            inputProgress.value = 0;
+            updateProgressValue(inputProgress.value);
         }
         function saveTask() {
             alert(document.querySelector(".task-editor-form [name=date]").value);
