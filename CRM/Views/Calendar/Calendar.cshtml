@@ -133,8 +133,31 @@
 @section Scripts 
 {
     <script>
-        function updateSelect(select) {
-            select.style.color = "black";
+        function getInputs() {
+            return {
+                date: document.querySelector(".input-date"),
+                startTime: document.querySelector("input[name=start-time]"),
+                endTime: document.querySelector("input[name=end-time]"),
+                text: document.querySelector(".input-text"),
+                assignedTo: document.querySelector(".select-assigned-person"),
+                progress: document.querySelector(".input-progress")
+            };
+        }
+        function populateEditor(item) {
+            const inputs = getInputs();
+            inputs.date.value = item.date;
+            inputs.startTime.value = item.startTime;
+            inputs.endTime.value = item.endTime;
+            inputs.text.value = item.text;
+            inputs.assignedTo.value = item.assignedTo.username;
+            inputs.progress.value = item.progress;
+
+            updateProgressValue(item.progress);
+            updateSelect();
+        }
+
+        function updateSelect() {
+            document.querySelector(".select-assigned-person").style.color = "black";
         }
         function updateProgressValue(progress) {
             document.querySelector(".input-progress-value").innerHTML = progress + '%';
