@@ -93,6 +93,13 @@ a {
     border-left: 1px solid var(--border-color);
     text-align: center;
     background-color: var(--calendar-color);
+}
+
+.calendar tbody {
+    height: 100%;
+}
+
+.calendar > tbody td {
     height: 16.67%;
 }
 
@@ -250,7 +257,7 @@ a {
     color: var(--color-background);
 }
 .time-range > input {
-    padding-left: 10px;
+    padding: 0 10px;
 }
 .input-text {
     display: block;
