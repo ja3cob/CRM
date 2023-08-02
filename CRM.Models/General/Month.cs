@@ -2,12 +2,12 @@
 {
     public class Month
     {
-        public DateTime CurrentDate { get; }
+        public DateOnly Date { get; }
         public Day[] Days { get; }
 
-        public Month(DateTime currentDate, Day[] days)
+        public Month(DateOnly date, Day[] days)
         {
-            CurrentDate = currentDate;
+            Date = date;
             Days = days;
         }
     }

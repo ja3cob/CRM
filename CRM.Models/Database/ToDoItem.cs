@@ -2,15 +2,17 @@
 {
     public class ToDoItem
     {
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateOnly Date { get; set; }
+        public TimeOnly StartTime { get; set; }
+        public TimeOnly EndTime { get; set; }
         public string Text { get; set; }
         public int Progress { get; set; }
         public Person AssignedTo { get; set; }
         public Person CreatedBy { get; }
 
-        public ToDoItem(DateTime startTime, DateTime endTime, string text, int progress, Person assignedTo, Person createdBy)
+        public ToDoItem(DateOnly date, TimeOnly startTime, TimeOnly endTime, string text, int progress, Person assignedTo, Person createdBy)
         {
+            Date = date;
             StartTime = startTime;
             EndTime = endTime;
             Text = text;

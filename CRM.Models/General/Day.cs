@@ -4,12 +4,12 @@ namespace CRM.Models.General
 {
     public class Day
     {
-        public DateTime CurrentDate { get; }
+        public DateOnly Date { get; }
         public List<ToDoItem>? ToDoItems { get; set; }
 
-        public Day(DateTime currentDate)
+        public Day(DateOnly date)
         {
-            CurrentDate = currentDate;
+            Date = date;
         }
     }
 }

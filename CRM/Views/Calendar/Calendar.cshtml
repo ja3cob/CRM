@@ -1,8 +1,8 @@
 ﻿@model CRM.Models.General.Month
 @{
     ViewData["Title"] = "Home Page";
-    var prevMonth = @Model.CurrentDate.AddMonths(-1);
-    var nextMonth = @Model.CurrentDate.AddMonths(1);
+    var prevMonth = @Model.Date.AddMonths(-1);
+    var nextMonth = @Model.Date.AddMonths(1);
 }
 
 <div class="tasks-container">
@@ -12,7 +12,7 @@
                 <a class="btn btn-arrow arrow-left btn--outline" href="/calendar/@prevMonth.Year/@prevMonth.Month">&larr;</a>
                 <a class="btn btn-arrow arrow-right btn--outline" href="/calendar/@nextMonth.Year/@nextMonth.Month">&rarr;</a>
             </div>
-            <h1 class="calendar-title">@Model.CurrentDate.ToString("MMMM") @Model.CurrentDate.Year</h1>
+            <h1 class="calendar-title">@Model.Date.ToString("MMMM") @Model.Date.Year</h1>
         </div>
         <table class="calendar">
             <thead>
@@ -29,13 +29,13 @@
             <tbody>
                 @for (int i = 0; i < Model.Days.Length; i++)
                 {
-                    @if(Model.Days[i].CurrentDate.DayOfWeek == DayOfWeek.Monday)
+                    @if(Model.Days[i].Date.DayOfWeek == DayOfWeek.Monday)
                     { 
                         @Html.Raw("<tr>"); 
                     }
                     <td>
-                        <div class="calendar-day @(Model.CurrentDate.Month != Model.Days[i].CurrentDate.Month ? "different-month" : "")">
-                            <p>@Model.Days[i].CurrentDate.Day</p>
+                        <div class="calendar-day @(Model.Date.Month != Model.Days[i].Date.Month ? "different-month" : "")">
+                            <p>@Model.Days[i].Date.Day</p>
                             <div class="todoitems">
                                 @for(int j = 0; j < Model.Days[i].ToDoItems?.Count; j++)
                                 {
@@ -47,7 +47,7 @@
                                         <p class="todoitems-item-text">
                                             @item.Text
                                         </p>
-                                        @if (Model.CurrentDate.Month == Model.Days[i].CurrentDate.Month)
+                                        @if (Model.Date.Month == Model.Days[i].Date.Month)
                                         {
                                         <div class="todoitems-item-details">
                                             <div class="todoitems-item-details-header">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </td>
-                    @if (Model.Days[i].CurrentDate.DayOfWeek == DayOfWeek.Sunday)
+                    @if (Model.Days[i].Date.DayOfWeek == DayOfWeek.Sunday)
                     {
                         @Html.Raw("</tr>");
                     }
