@@ -5,12 +5,12 @@ using System.Diagnostics;
 
 namespace CRM.Controllers
 {
-    public class CalendarController : Controller
+    public class HomeController : Controller
     {
-        public CalendarController() { }
+        public HomeController() { }
 
         [HttpGet]
-        public IActionResult Calendar([FromRoute] int? year, [FromRoute] int? month)
+        public IActionResult Index([FromRoute] int? year, [FromRoute] int? month)
         {
             if(!year.HasValue || !month.HasValue)
             {

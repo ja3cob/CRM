@@ -27,13 +27,13 @@ namespace CRM
             app.UseAuthorization();
 
             app.MapControllerRoute(
-                name: "calendar",
-                pattern: "calendar/{year:int?}/{month:int?}",
-                defaults: new { controller = "Calendar", action = "Calendar" });
+                name: "home",
+                pattern: "home/{year:int?}/{month:int?}",
+                defaults: new { controller = "Home", action = "Index" });
             app.MapControllerRoute(
                 name: "default",
                 pattern: "/",
-                defaults: new { controller = "Calendar", action = "Calendar" });
+                defaults: new { controller = "Home", action = "Index" });
 
             app.Run();
         }

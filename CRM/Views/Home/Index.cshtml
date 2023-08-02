@@ -1,4 +1,6 @@
 ﻿@model CRM.Models.General.Month
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Serialization;
 @{
     ViewData["Title"] = "Home Page";
     var prevMonth = @Model.Date.AddMonths(-1);
@@ -40,7 +42,8 @@
                                 @for(int j = 0; j < Model.Days[i].ToDoItems?.Count; j++)
                                 {
                                     var item = Model.Days[i].ToDoItems[j];
-                                    <div class="todoitems-item" onmouseover="displayTodoitemDetails(this)" onmouseout="hideTodoitemDetails(this)">
+                                    var itemJson = JsonConvert.SerializeObject(item, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+                                    <div class="todoitems-item" onmouseover="displayTodoitemDetails(this)" onmouseout="hideTodoitemDetails(this)" onclick="populateEditor(@itemJson)">
                                         <p class="todoitems-item-time">
                                             @(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))
                                         </p>
@@ -113,7 +116,7 @@
                     <div class="input-progress-wrapper">
                         <input class="input-progress" type="range" name="progress" min="0" max="100" step="10" value="0" oninput="updateProgressValue(this.value)" />
                         <span class="input-progress-value">0%</span>
-                </div>
+                    </div>
                 </div>
                 <div class="task-editor-buttons">
                     <button class="btn btn--outline" type="button" onclick="clearEditor()">Wyczyść</button>
@@ -204,6 +207,10 @@
             details.style.left = (rect.left + item.offsetWidth + 2) + 'px';
             details.style.top = rect.top + 'px';
             details.classList.add("show");
+            /*window.history.pushState("huh", "huh", "/huj");
+            console.log(window.location);
+
+            document.querySelector(".task-editor-form").querySelector(".input-wrapper").= 'hujj';*/
         }
         function hideTodoitemDetails(item) {
             const details = item.querySelector(".todoitems-item-details");

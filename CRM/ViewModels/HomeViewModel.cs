@@ -2,11 +2,11 @@
 
 namespace CRM.ViewModels
 {
-    internal class IndexViewModel
+    internal class HomeViewModel
     {
         public Month Month { get; set; }
 
-        public IndexViewModel(Month month)
+        public HomeViewModel(Month month)
         {
             Month = month;
         }
