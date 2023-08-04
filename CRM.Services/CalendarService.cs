@@ -25,7 +25,7 @@ namespace CRM.Services
                 tempDay = tempDay.AddDays(1);
             }
 
-            var testPerson = new Person("test", "test", null, null, Models.Role.User);
+            string testPerson = "test";
             var startTime = new TimeOnly(10, 0);
             var endTime = startTime.AddHours(3);
 

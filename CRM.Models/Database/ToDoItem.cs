@@ -7,10 +7,10 @@
         public TimeOnly EndTime { get; set; }
         public string Text { get; set; }
         public int Progress { get; set; }
-        public Person AssignedTo { get; set; }
-        public Person CreatedBy { get; }
+        public string AssignedTo { get; set; }
+        public string CreatedBy { get; }
 
-        public ToDoItem(DateOnly date, TimeOnly startTime, TimeOnly endTime, string text, int progress, Person assignedTo, Person createdBy)
+        public ToDoItem(DateOnly date, TimeOnly startTime, TimeOnly endTime, string text, int progress, string assignedTo, string createdBy)
         {
             Date = date;
             StartTime = startTime;
