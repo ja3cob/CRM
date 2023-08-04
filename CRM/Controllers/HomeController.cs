@@ -21,7 +21,7 @@ namespace CRM.Controllers
             {
                 return StatusCode(StatusCodes.Status404NotFound);
             }
-            return View(CalendarService.GenerateMonth(month.Value, year.Value));
+            return View(CalendarService.GenerateMonth(year.Value, month.Value));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

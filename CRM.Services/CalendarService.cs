@@ -6,7 +6,7 @@ namespace CRM.Services
     public class CalendarService
     {
         private const int DaysInCalendar = 7 * 6;
-        public static Month GenerateMonth(int month, int year)
+        public static Month GenerateMonth(int year, int month)
         {
             var days = new List<Day>();
 
