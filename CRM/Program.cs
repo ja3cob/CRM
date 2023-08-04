@@ -1,3 +1,5 @@
+using CRM.Services.Util;
+
 namespace CRM
 {
     public class Program
@@ -7,7 +9,12 @@ namespace CRM
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                .AddJsonOptions(options => 
+                {
+                    options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+                    options.JsonSerializerOptions.Converters.Add(new TimeOnlyJsonConverter());
+                });
 
             var app = builder.Build();
 
