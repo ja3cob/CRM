@@ -1,4 +1,4 @@
-﻿function loadCalendar(days: Date[], calendarBody: Element) {
+﻿function loadDays(days: Date[], calendarBody: Element) {    
     for(let week = 0, arrayIndex = 0; week < daysInCalendar / daysInWeek; week++) {
         let tr = document.createElement("tr");
 
