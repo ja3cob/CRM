@@ -11,7 +11,7 @@ public sealed class TimeOnlyJsonConverter : JsonConverter<TimeOnly>
 
     public override void Write(Utf8JsonWriter writer, TimeOnly value, JsonSerializerOptions options)
     {
-        var isoDate = value.ToString();
+        var isoDate = value.ToString("o")[..5];
         writer.WriteStringValue(isoDate);
     }
 }
