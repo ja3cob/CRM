@@ -24,17 +24,16 @@ Date.prototype.toISOStringDate = function () {
     return year + '-' + month + '-' + day;
 }
 
-function generateMonth(year: number, month: number): Date[] {
+function generateMonth(date: Date): Date[] {
     var days = [];
-    const firstDay = new Date(year + "-" + month + "-1");
-    var tempDay = new Date(firstDay.getTime());
+    var tempDay = new Date(date.getTime());
     days.push(new Date(tempDay.getTime()));
 
     while (days[0].getDay() != monday) {
         tempDay.addDays(-1)
         days.unshift(new Date(tempDay.getTime()));
     }
-    tempDay = new Date(firstDay.getTime());
+    tempDay = new Date(date.getTime());
     tempDay.addDays(1);
 
     while (days.length < daysInCalendar) {

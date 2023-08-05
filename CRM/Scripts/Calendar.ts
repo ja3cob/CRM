@@ -38,8 +38,8 @@ interface ToDoItem {
     createdBy: string;
 }
 
-function loadToDoItems(year: number, month: number) {
-    const apiUrl = `/todoitems?year=${year}&month=${month}`;
+function loadToDoItems(date: Date) {
+    const apiUrl = `/todoitems?year=${date.getFullYear()}&month=${date.getMonth() + 1}`;
 
     fetch(apiUrl)
         .then(response => {
@@ -52,7 +52,6 @@ function loadToDoItems(year: number, month: number) {
             data.forEach((toDoItem: ToDoItem) => {
                 const day = document.getElementById(`${toDoItem.date}`);
                 if(day != undefined) {
-                    console.log(toDoItem.date);
                     day.appendChild(generateToDoItemDiv(toDoItem, false));
                 }
             });
