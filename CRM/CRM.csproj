@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <None Include="Scripts\MonthGenerator.ts" />
+    <None Include="Scripts\Calendar.ts" />
   </ItemGroup>
 
   <ItemGroup>
