@@ -34,6 +34,10 @@ namespace CRM
             app.UseAuthorization();
 
             app.MapControllerRoute(
+                name: "calendar",
+                pattern: "/calendar",
+                defaults: new { controller = "Home", action = "Index" });
+            app.MapControllerRoute(
                 name: "default",
                 pattern: "/",
                 defaults: new { controller = "Home", action = "Index" });
