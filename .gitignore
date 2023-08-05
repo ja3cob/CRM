@@ -363,3 +363,7 @@ MigrationBackup/
 FodyWeavers.xsd
 
 .vscode/
+
+.DS_STORE
+
+CRM/wwwroot/js/
