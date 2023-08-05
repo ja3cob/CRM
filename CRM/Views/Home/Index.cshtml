@@ -28,56 +28,7 @@
                     <td>Nd</td>
                 </tr>
             </thead>
-            <tbody>
-                @for (int i = 0; i < Model.Days.Length; i++)
-                {
-                    @if(Model.Days[i].Date.DayOfWeek == DayOfWeek.Monday)
-                    { 
-                        @Html.Raw("<tr>"); 
-                    }
-                    <td>
-                        <div class="calendar-day @(Model.Date.Month != Model.Days[i].Date.Month ? "different-month" : "")">
-                            <p>@Model.Days[i].Date.Day</p>
-                            <div class="todoitems">
-                                @for(int j = 0; j < Model.Days[i].ToDoItems?.Count; j++)
-                                {
-                                    var item = Model.Days[i].ToDoItems[j];
-                                    var itemJson = JsonConvert.SerializeObject(item, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
-                                    <div class="todoitems-item" onmouseover="displayTodoitemDetails(this)" onmouseout="hideTodoitemDetails(this)" onclick="populateEditor(@itemJson)">
-                                        <p class="todoitems-item-time">
-                                            @(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))
-                                        </p>
-                                        <p class="todoitems-item-text">
-                                            @item.Text
-                                        </p>
-                                        @if (Model.Date.Month == Model.Days[i].Date.Month)
-                                        {
-                                        <div class="todoitems-item-details">
-                                            <div class="todoitems-item-details-header">
-                                                <span class="todoitems-item-details-time">@(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))</span>
-                                                <div class="c100 @(Html.Raw("p") + item.Progress.ToString()) small">
-                                                    <span>@item.Progress.ToString()%</span>
-                                                    <div class="slice">
-                                                        <div class="bar"></div>
-                                                        <div class="fill"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="todoitems-item-details-text">@item.Text</p>
-                                            <p class="todoitems-item-details-assignedto">Przydzielony: @item.AssignedTo.Username</p>
-                                            <p class="todoitems-item-details-createdby">Utworzył: @item.CreatedBy.Username</p>
-                                        </div>
-                                        }
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </td>
-                    @if (Model.Days[i].Date.DayOfWeek == DayOfWeek.Sunday)
-                    {
-                        @Html.Raw("</tr>");
-                    }
-                }
+            <tbody class="calendar-body">
             </tbody>
         </table>
     </div>
@@ -135,7 +86,68 @@
 
 @section Scripts 
 {
+    <script src="~/js/Calendar.js"></script>
+    <script src="~/js/MonthGenerator.js"></script>
     <script>
+        @*@for (int i = 0; i < Model.Days.Length; i++)
+                {
+                    @if(Model.Days[i].Date.DayOfWeek == DayOfWeek.Monday)
+                    { 
+                        @Html.Raw("<tr>"); 
+                    }
+                    <td>
+                        <div class="calendar-day @(Model.Date.Month != Model.Days[i].Date.Month ? "different-month" : "")">
+                            <p>@Model.Days[i].Date.Day</p>
+                            <div class="todoitems">
+                                @for(int j = 0; j < Model.Days[i].ToDoItems?.Count; j++)
+                                {
+                                    var item = Model.Days[i].ToDoItems[j];
+                                    var itemJson = JsonConvert.SerializeObject(item, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+                                    <div class="todoitems-item" onmouseover="displayTodoitemDetails(this)" onmouseout="hideTodoitemDetails(this)" onclick="populateEditor(@itemJson)">
+                                        <p class="todoitems-item-time">
+                                            @(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))
+                                        </p>
+                                        <p class="todoitems-item-text">
+                                            @item.Text
+                                        </p>
+                                        @if (Model.Date.Month == Model.Days[i].Date.Month)
+                                        {
+                                        <div class="todoitems-item-details">
+                                            <div class="todoitems-item-details-header">
+                                                <span class="todoitems-item-details-time">@(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))</span>
+                                                <div class="c100 @(Html.Raw("p") + item.Progress.ToString()) small">
+                                                    <span>@item.Progress.ToString()%</span>
+                                                    <div class="slice">
+                                                        <div class="bar"></div>
+                                                        <div class="fill"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="todoitems-item-details-text">@item.Text</p>
+                                            <p class="todoitems-item-details-assignedto">Przydzielony: @item.AssignedTo.Username</p>
+                                            <p class="todoitems-item-details-createdby">Utworzył: @item.CreatedBy.Username</p>
+                                        </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </td>
+                    @if (Model.Days[i].Date.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        @Html.Raw("</tr>");
+                    }
+                }*@
+        fillTable();
+        function fillTable() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const year = urlParams.get('year');
+            console.log(year);
+            loadCalendar(generateMonth(2023, 8), document.querySelector(".calendar-body"));
+
+            loadToDoItems(2023, 8);
+        }
+
         function getInputs() {
             return {
                 date: document.querySelector(".input-date"),
