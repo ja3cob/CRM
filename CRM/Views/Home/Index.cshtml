@@ -11,8 +11,8 @@
     <div class="tasks-calendar">
         <div class="tasks-calendar-header">
             <div class="tasks-calendar-buttons">
-                <a class="btn btn-arrow arrow-left btn--outline" href="/calendar/@prevMonth.Year/@prevMonth.Month">&larr;</a>
-                <a class="btn btn-arrow arrow-right btn--outline" href="/calendar/@nextMonth.Year/@nextMonth.Month">&rarr;</a>
+                <btn class="btn btn-arrow arrow-left btn--outline" onclick="changeMonth(-1)">&larr;</btn>
+                <btn class="btn btn-arrow arrow-right btn--outline" onclick="changeMonth(1)">&rarr;</btn>
             </div>
             <h1 class="calendar-title">@Model.Date.ToString("MMMM") @Model.Date.Year</h1>
         </div>
