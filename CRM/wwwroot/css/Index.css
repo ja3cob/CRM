@@ -159,7 +159,7 @@ a {
     background-color: var(--color-primary);
     margin-bottom: 5px;
     border-radius: 9px;
-    padding: 4px 6px;
+    padding: 3px;
     text-align: left;
     cursor: pointer;
 }
@@ -172,12 +172,11 @@ a {
     margin-top: 5px;
 }
 
-.todoitems-item-time {
-    font-size: 0.8rem;
+.todoitems-item-time, .todoitems-item-text {
+    font-size: 0.6rem;
 }
 
 .todoitems-item-text {
-    font-size: 0.8rem;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
