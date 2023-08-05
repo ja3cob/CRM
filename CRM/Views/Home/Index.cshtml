@@ -14,7 +14,7 @@
                 <btn class="btn btn-arrow arrow-left btn--outline" onclick="changeMonth(-1)">&larr;</btn>
                 <btn class="btn btn-arrow arrow-right btn--outline" onclick="changeMonth(1)">&rarr;</btn>
             </div>
-            <h1 class="calendar-title">@Model.Date.ToString("MMMM") @Model.Date.Year</h1>
+            <h1 class="calendar-title"></h1>
         </div>
         <table class="calendar">
             <thead>
@@ -89,63 +89,41 @@
     <script src="~/js/Calendar.js"></script>
     <script src="~/js/MonthGenerator.js"></script>
     <script>
-        @*@for (int i = 0; i < Model.Days.Length; i++)
-                {
-                    @if(Model.Days[i].Date.DayOfWeek == DayOfWeek.Monday)
-                    { 
-                        @Html.Raw("<tr>"); 
-                    }
-                    <td>
-                        <div class="calendar-day @(Model.Date.Month != Model.Days[i].Date.Month ? "different-month" : "")">
-                            <p>@Model.Days[i].Date.Day</p>
-                            <div class="todoitems">
-                                @for(int j = 0; j < Model.Days[i].ToDoItems?.Count; j++)
-                                {
-                                    var item = Model.Days[i].ToDoItems[j];
-                                    var itemJson = JsonConvert.SerializeObject(item, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
-                                    <div class="todoitems-item" onmouseover="displayTodoitemDetails(this)" onmouseout="hideTodoitemDetails(this)" onclick="populateEditor(@itemJson)">
-                                        <p class="todoitems-item-time">
-                                            @(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))
-                                        </p>
-                                        <p class="todoitems-item-text">
-                                            @item.Text
-                                        </p>
-                                        @if (Model.Date.Month == Model.Days[i].Date.Month)
-                                        {
-                                        <div class="todoitems-item-details">
-                                            <div class="todoitems-item-details-header">
-                                                <span class="todoitems-item-details-time">@(item.StartTime.ToString("HH:mm") + " - " + item.EndTime.ToString("HH:mm"))</span>
-                                                <div class="c100 @(Html.Raw("p") + item.Progress.ToString()) small">
-                                                    <span>@item.Progress.ToString()%</span>
-                                                    <div class="slice">
-                                                        <div class="bar"></div>
-                                                        <div class="fill"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="todoitems-item-details-text">@item.Text</p>
-                                            <p class="todoitems-item-details-assignedto">Przydzielony: @item.AssignedTo.Username</p>
-                                            <p class="todoitems-item-details-createdby">Utworzył: @item.CreatedBy.Username</p>
-                                        </div>
-                                        }
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </td>
-                    @if (Model.Days[i].Date.DayOfWeek == DayOfWeek.Sunday)
-                    {
-                        @Html.Raw("</tr>");
-                    }
-                }*@
-        fillTable();
-        function fillTable() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const year = urlParams.get('year');
-            console.log(year);
-            loadCalendar(generateMonth(2023, 8), document.querySelector(".calendar-body"));
+        loadCalendar();
 
-            loadToDoItems(2023, 8);
+        window.addEventListener('popstate', function (event) {
+            loadCalendar();
+        });
+
+        function loadCalendar() {
+            const currentDate = getCurrentDate();
+            const calendar = document.querySelector(".calendar-body");
+            calendar.innerHTML = '';
+
+            const title = currentDate.toLocaleString('default', { month: 'long' }) + " " + currentDate.getFullYear().toString();
+            document.querySelector(".calendar-title").innerHTML = title;
+
+            loadDays(generateMonth(currentDate), calendar);
+            loadToDoItems(currentDate);
+        }
+        function getCurrentDate() {
+            const urlParams = new URLSearchParams(window.location.search);
+            var year = urlParams.get('year');
+            var month = urlParams.get('month');
+            if (year == undefined || month == undefined
+                || isNaN(year) || isNaN(month)) {
+                let currentDate = new Date();
+                year = currentDate.getFullYear();
+                month = currentDate.getMonth() + 1;
+            }
+            return new Date(year, month - 1, 1);
+        }
+        function changeMonth(change) {
+            const currentDate = getCurrentDate();
+            currentDate.setMonth(currentDate.getMonth() + Number(change));
+
+            history.pushState(currentDate, "", `/calendar?year=${currentDate.getFullYear()}&month=${currentDate.getMonth() + 1}`);
+            loadCalendar();
         }
 
         function getInputs() {
