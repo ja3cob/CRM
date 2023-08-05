@@ -1,4 +1,5 @@
-﻿using CRM.Services;
+﻿using CRM.Models.General;
+using CRM.Services;
 using CRM.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -21,7 +22,7 @@ namespace CRM.Controllers
             {
                 return StatusCode(StatusCodes.Status404NotFound);
             }
-            return View(CalendarService.GenerateMonth(year.Value, month.Value));
+            return View(new Month(DateOnly.FromDateTime(DateTime.Now), new Day[1]));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
