@@ -20,7 +20,7 @@ namespace CRM
                 });
 
             // Configure DB
-            builder.Services.AddDbContext<MySqlDbContext>();
+            builder.Services.AddSingleton<CRMDbContext, MySqlDbContext>();
             builder.Services.AddSingleton<DatabaseService>();
 
             // Configure services
