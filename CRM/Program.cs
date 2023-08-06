@@ -1,3 +1,6 @@
+using CRM.Database;
+using CRM.Database.DbContexts;
+using CRM.Services;
 using CRM.Services.Util;
 
 namespace CRM
@@ -15,6 +18,13 @@ namespace CRM
                     options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
                     options.JsonSerializerOptions.Converters.Add(new TimeOnlyJsonConverter());
                 });
+
+            // Configure DB
+            builder.Services.AddDbContext<MySqlDbContext>();
+            builder.Services.AddSingleton<DatabaseService>();
+
+            // Configure services
+            builder.Services.AddSingleton<IToDoItemsService, ToDoItemsServiceDebug>();
 
             var app = builder.Build();
 
