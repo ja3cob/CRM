@@ -8,6 +8,12 @@ namespace CRM.Controllers.Api
     [Route("[controller]")]
     public class ToDoItemsController : Controller
     {
+        private IToDoItemsService _toDoItemsService;
+        public ToDoItemsController(IToDoItemsService toDoItemsService)
+        {
+            _toDoItemsService = toDoItemsService;
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<ToDoItem>> GetForMonth([FromQuery] int? year, [FromQuery] int? month)
         {
@@ -20,7 +26,7 @@ namespace CRM.Controllers.Api
             {
                 return NotFound();
             }
-            return Ok(CalendarService.GetToDoItems(year.Value, month.Value));
+            return Ok(_toDoItemsService.GetToDoItems(year.Value, month.Value));
         }
     }
 }
