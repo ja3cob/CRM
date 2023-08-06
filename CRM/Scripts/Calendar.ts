@@ -28,14 +28,20 @@
     }
 }
 
+interface Person {
+    username: string;
+    firstName: string;
+    lastName: string;
+    role: number;
+}
 interface ToDoItem {
     date: string;
     startTime: string;
     endTime: string;
     text: string;
     progress: number;
-    assignedTo: string;
-    createdBy: string;
+    assignedTo: Person;
+    createdBy: Person;
 }
 
 function loadToDoItems(date: Date) {
@@ -107,12 +113,12 @@ function generateToDoItemDetails(toDoItem: ToDoItem): Element {
 
     const assignedTo = document.createElement("p");
     assignedTo.classList.add("todoitems-item-details-assignedto");
-    assignedTo.innerHTML = "Przydzielony: " + toDoItem.assignedTo;
+    assignedTo.innerHTML = "Przydzielony: " + toDoItem.assignedTo.username;
     detailsDiv.appendChild(assignedTo);
 
     const createdBy = document.createElement("p");
     createdBy.classList.add("todoitems-item-details-createdby");
-    createdBy.innerHTML = "Utworzył: " + toDoItem.createdBy;
+    createdBy.innerHTML = "Utworzył: " + toDoItem.createdBy.username;
     detailsDiv.appendChild(createdBy);
 
     return detailsDiv;
