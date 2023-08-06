@@ -1,8 +1,10 @@
-﻿namespace CRM.Models.Database
+﻿using System.Text.Json.Serialization;
+namespace CRM.Models.Database
 {
     public class Person
     {
         public string Username { get; set; }
+        [JsonIgnore]
         public string HashedPassword { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
