@@ -5,9 +5,14 @@ namespace CRM.Services
 {
     public class ToDoItemsServiceDebug : IToDoItemsService
     {
-        public IEnumerable<ToDoItem> GetToDoItems(int year, int month)
+        public ToDoItem Get(int id)
         {
-            var testPerson = new Person("test", "", null, null, Models.Role.User);
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ToDoItem> GetList(int year, int month)
+        {
+            var testPerson = new Person { Username = "test", Role = Models.Role.User };
             var date = new DateOnly(year, month, 1);
             var startTime = new TimeOnly(10, 0);
             var endTime = startTime.AddHours(3);
@@ -15,15 +20,21 @@ namespace CRM.Services
             string lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin volutpat, eros eget posuere venenatis, velit nisl ullamcorper tortor, non eleifend elit libero eu quam. Sed id facilisis nisi.";
             return new List<ToDoItem>
             {
-                new ToDoItem(date, startTime, endTime, lorem, 0, testPerson, testPerson),
-                new ToDoItem(date, startTime.AddHours(1), endTime.AddHours(1), lorem, 10, testPerson, testPerson),
-                new ToDoItem(date, startTime.AddHours(2), endTime.AddHours(2), lorem, 20, testPerson, testPerson),
-                new ToDoItem(date, startTime.AddHours(3), endTime.AddHours(3), lorem, 30, testPerson, testPerson),
-                new ToDoItem(date.AddDays(1), startTime, endTime, lorem, 0, testPerson, testPerson),
-                new ToDoItem(date.AddDays(1), startTime.AddHours(1), endTime.AddHours(1), lorem, 10, testPerson, testPerson),
-                new ToDoItem(date.AddDays(1), startTime.AddHours(2), endTime.AddHours(2), lorem, 20, testPerson, testPerson),
-                new ToDoItem(date.AddDays(1), startTime.AddHours(3), endTime.AddHours(3), lorem, 30, testPerson, testPerson),
+                new ToDoItem{Date = date, StartTime = startTime            , EndTime = endTime, Text = lorem, Progress =  0, AssignedTo = testPerson, CreatedBy = testPerson },
+                new ToDoItem{Date = date, StartTime = startTime.AddHours(1), EndTime = endTime, Text = lorem, Progress = 10, AssignedTo = testPerson, CreatedBy = testPerson },
+                new ToDoItem{Date = date, StartTime = startTime.AddHours(2), EndTime = endTime, Text = lorem, Progress = 20, AssignedTo = testPerson, CreatedBy = testPerson },
+                new ToDoItem{Date = date, StartTime = startTime.AddHours(3), EndTime = endTime, Text = lorem, Progress = 30, AssignedTo = testPerson, CreatedBy = testPerson },
+
+                new ToDoItem{Date = date.AddDays(1), StartTime = startTime            , EndTime = endTime, Text = lorem, Progress =  0, AssignedTo = testPerson, CreatedBy = testPerson },
+                new ToDoItem{Date = date.AddDays(1), StartTime = startTime.AddHours(1), EndTime = endTime, Text = lorem, Progress = 10, AssignedTo = testPerson, CreatedBy = testPerson },
+                new ToDoItem{Date = date.AddDays(1), StartTime = startTime.AddHours(2), EndTime = endTime, Text = lorem, Progress = 20, AssignedTo = testPerson, CreatedBy = testPerson },
+                new ToDoItem{Date = date.AddDays(1), StartTime = startTime.AddHours(3), EndTime = endTime, Text = lorem, Progress = 30, AssignedTo = testPerson, CreatedBy = testPerson }
             };
+        }
+
+        public void Add(ToDoItem item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CRM.Models.Database;
 using CRM.Services;
+using CRM.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRM.Controllers.Api
@@ -8,7 +9,7 @@ namespace CRM.Controllers.Api
     [Route("[controller]")]
     public class ToDoItemsController : Controller
     {
-        private IToDoItemsService _toDoItemsService;
+        private readonly IToDoItemsService _toDoItemsService;
         public ToDoItemsController(IToDoItemsService toDoItemsService)
         {
             _toDoItemsService = toDoItemsService;
@@ -26,7 +27,7 @@ namespace CRM.Controllers.Api
             {
                 return NotFound();
             }
-            return Ok(_toDoItemsService.GetToDoItems(year.Value, month.Value));
+            return Ok(_toDoItemsService.GetList(year.Value, month.Value));
         }
     }
 }
