@@ -113,7 +113,12 @@ function generateToDoItemDetails(toDoItem: ToDoItem): Element {
 
     const assignedTo = document.createElement("p");
     assignedTo.classList.add("todoitems-item-details-assignedto");
-    assignedTo.innerHTML = "Przydzielony: " + toDoItem.assignedTo.username;
+    assignedTo.innerHTML = "Przydzielony: ";
+    if (toDoItem.assignedTo == null) {
+        assignedTo.innerHTML += "brak";
+    } else {
+        assignedTo.innerHTML += toDoItem.assignedTo.username;
+    }
     detailsDiv.appendChild(assignedTo);
 
     const createdBy = document.createElement("p");
