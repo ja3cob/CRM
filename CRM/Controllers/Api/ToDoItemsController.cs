@@ -10,9 +10,11 @@ namespace CRM.Controllers.Api
     public class ToDoItemsController : Controller
     {
         private readonly IToDoItemsService _toDoItemsService;
-        public ToDoItemsController(IToDoItemsService toDoItemsService)
+        private readonly PeopleService _peopleService;
+        public ToDoItemsController(IToDoItemsService toDoItemsService, PeopleService peopleService)
         {
             _toDoItemsService = toDoItemsService;
+            _peopleService = peopleService;
         }
 
         [HttpGet]
