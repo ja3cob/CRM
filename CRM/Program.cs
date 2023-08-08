@@ -3,47 +3,64 @@ using CRM.Services;
 using CRM.Services.Interfaces;
 using CRM.Services.Util;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace CRM
 {
-    public class Program
+    public static class Program
     {
-        public static void Main(string[] args)
+        private static void ConfigureServices(this WebApplicationBuilder builder)
         {
-            var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
             builder.Services.AddControllersWithViews()
-                .AddJsonOptions(options => 
+                .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
                     options.JsonSerializerOptions.Converters.Add(new TimeOnlyJsonConverter());
                 });
-
-            // Configure DB
-            builder.Services.AddDbContext<CRMDbContext>(options =>
-            options.UseMySQL(builder.Configuration.GetConnectionString("local")));
-
-            // Configure services
             builder.Services.AddScoped<IToDoItemsService, ToDoItemsService>();
+            builder.Services.AddScoped<PeopleService>();
+        }
 
-            var app = builder.Build();
+        private static void ConfigureDatabase(this WebApplicationBuilder builder)
+        {
+            string? connectionStringName = builder.Configuration["UseConnectionString"];
+            if (connectionStringName == null) { throw new ConfigurationErrorsException("'UseConnectionString' must be specified"); }
 
-            // Configure the HTTP request pipeline.
+            string? connectionString = builder.Configuration.GetConnectionString(connectionStringName);
+            if (connectionString == null) { throw new ConfigurationErrorsException($"Could not find {connectionStringName} connection string"); }
+
+            builder.Services.AddDbContext<CRMDbContext>(options => options.UseMySQL(connectionString));
+        }
+
+        private static async Task MigrateDatabase(this WebApplicationBuilder builder)
+        {
+            try
+            {
+                using var scope = builder.Services.BuildServiceProvider().CreateScope();
+                await scope.ServiceProvider.GetRequiredService<CRMDbContext>().Database.EnsureCreatedAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while connecting to the database. Probably wrong configuration.", ex);
+            }
+        }
+
+        private static void ConfigureMiddlewarePipeline(this WebApplication app)
+        {
             if (!app.Environment.IsDevelopment())
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
+        }
 
+        private static void ConfigureRoutes(this WebApplication app)
+        {
             app.MapControllerRoute(
                 name: "calendar",
                 pattern: "/calendar",
@@ -52,7 +69,21 @@ namespace CRM
                 name: "default",
                 pattern: "/",
                 defaults: new { controller = "Home", action = "Index" });
+        }
 
+        public static async Task Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+
+            builder.ConfigureDatabase();
+            var dbMigrationTask = builder.MigrateDatabase();
+            builder.ConfigureServices();
+
+            var app = builder.Build();
+            app.ConfigureMiddlewarePipeline();
+            app.ConfigureRoutes();
+
+            await dbMigrationTask;
             app.Run();
         }
     }
