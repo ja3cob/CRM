@@ -1,8 +1,8 @@
 using CRM.Database;
-using CRM.Database.DbContexts;
 using CRM.Services;
 using CRM.Services.Interfaces;
 using CRM.Services.Util;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRM
 {
@@ -21,11 +21,11 @@ namespace CRM
                 });
 
             // Configure DB
-            builder.Services.AddSingleton<CRMDbContext, MySqlDbContext>();
-            builder.Services.AddSingleton<DatabaseService>();
+            builder.Services.AddDbContext<CRMDbContext>(options =>
+            options.UseMySQL(builder.Configuration.GetConnectionString("local")));
 
             // Configure services
-            builder.Services.AddSingleton<IToDoItemsService, ToDoItemsServiceDebug>();
+            builder.Services.AddScoped<IToDoItemsService, ToDoItemsService>();
 
             var app = builder.Build();
 
