@@ -2,7 +2,7 @@
 using CRM.Models.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace CRM.Database.DbContexts;
+namespace CRM.Database;
 public class CRMDbContext : DbContext
 {
     public CRMDbContext(DbContextOptions options) : base(options) { }
