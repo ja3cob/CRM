@@ -1,5 +1,6 @@
 ﻿using CRM.Database;
 using CRM.Models.Database;
+using CRM.Services.Interfaces;
 
 namespace CRM.Services
 {
