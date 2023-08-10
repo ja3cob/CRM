@@ -1,11 +1,10 @@
 ﻿using CRM.Database;
 using CRM.Models.Database;
-using CRM.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CRM.Services
 {
-    public class ToDoItemsService : IToDoItemsService
+    public class ToDoItemsService
 	{
 		private readonly CRMDbContext _dbContext;
 		public ToDoItemsService(CRMDbContext dbContext)
@@ -14,7 +13,7 @@ namespace CRM.Services
 			_dbContext.Database.EnsureCreated();
 		}
 
-		public ToDoItem Get(int id)
+		public ToDoItem? Get(int id)
 		{
 			return _dbContext.ToDoItems.First(x => x.Id == id);
 		}

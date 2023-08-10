@@ -1,9 +1,8 @@
 ﻿using CRM.Models.Database;
-using CRM.Services.Interfaces;
 
 namespace CRM.Services
 {
-    public class ToDoItemsServiceDebug : IToDoItemsService
+    public class ToDoItemsServiceDebug
     {
         public ToDoItem Get(int id)
         {

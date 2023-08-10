@@ -1,6 +1,5 @@
 using CRM.Database;
 using CRM.Services;
-using CRM.Services.Interfaces;
 using CRM.Services.Util;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
@@ -17,7 +16,7 @@ namespace CRM
                     options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
                     options.JsonSerializerOptions.Converters.Add(new TimeOnlyJsonConverter());
                 });
-            builder.Services.AddScoped<IToDoItemsService, ToDoItemsService>();
+            builder.Services.AddScoped<ToDoItemsService>();
             builder.Services.AddScoped<PeopleService>();
         }
 
