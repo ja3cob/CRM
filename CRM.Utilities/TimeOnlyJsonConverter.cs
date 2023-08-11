@@ -6,11 +6,12 @@ public sealed class TimeOnlyJsonConverter : JsonConverter<TimeOnly>
 {
     public override TimeOnly Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        if(reader.GetString() == null)
+        var timeString = reader.GetString();
+        if(timeString == null || !DateTime.TryParse(timeString, out var timeOnly))
         {
-
+            throw new RequestException("Time was in an incorrect format", System.Net.HttpStatusCode.BadRequest);
         }
-        return TimeOnly.FromDateTime(DateTime.Parse(reader.GetString()));
+        return TimeOnly.FromDateTime(timeOnly);
     }
 
     public override void Write(Utf8JsonWriter writer, TimeOnly value, JsonSerializerOptions options)
