@@ -35,7 +35,7 @@
     <section class="tasks-spikes"></section>
     <div class="tasks-controls">
         <div class="task-editor">
-            <h1 class="task-editor-title">Edytuj / stwórz zadanie</h1>
+            <h1 class="task-editor-title">Stwórz zadanie</h1>
             <form class="task-editor-form" action="">
                 <input name="id" type="number" hidden />
                 <div class="input-wrapper">
@@ -127,6 +127,8 @@
             };
         }
         function populateEditor(item) {
+            document.querySelector(".task-editor-title").innerHTML = "Edytuj zadanie";
+
             const inputs = getInputs();
             inputs.id.value = item.id;
             inputs.date.value = item.date;
