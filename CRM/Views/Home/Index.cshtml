@@ -168,7 +168,8 @@
             updateProgressValue(inputProgress.value);
         }
         function saveTask() {
-            alert(document.querySelector(".task-editor-form [name=date]").value);
+            const inputs = getInputs();
+            postTask(inputs);
         }
         async function postDataUsingFetch() {
             fetch("/Home", {

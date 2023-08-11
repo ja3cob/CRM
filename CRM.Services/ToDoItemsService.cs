@@ -22,8 +22,19 @@ namespace CRM.Services
 			var ret = _dbContext.ToDoItems.Include(p => p.CreatedBy).Where(p => p.Date == new DateOnly(year, month, 1));
 			return ret;
         }
-		public void Add(ToDoItem toDoItem)
+		public void Save(ToDoItem toDoItem)
 		{
+			if (toDoItem.Id != null)
+			{
+				var oldItem = Get(toDoItem.Id.Value);
+				if(oldItem != null)
+		{
+					_dbContext.Entry(oldItem).CurrentValues.SetValues(toDoItem);
+                    _dbContext.SaveChanges();
+					return;
+                }
+            }
+
 			_dbContext.ToDoItems.Add(toDoItem);
 			_dbContext.SaveChanges();
 		}

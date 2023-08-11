@@ -30,5 +30,20 @@ namespace CRM.Controllers.Api
             }
             return Ok(_toDoItemsService.GetList(year.Value, month.Value));
         }
+
+        [HttpPost]
+        public ActionResult Save([FromBody] ToDoItem item)
+        {
+            try
+            {
+                _toDoItemsService.Save(item);
+            }
+            catch(Exception)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }

@@ -35,13 +35,46 @@ interface Person {
     role: number;
 }
 interface ToDoItem {
+    id: number;
     date: string;
     startTime: string;
     endTime: string;
     text: string;
     progress: number;
-    assignedTo: Person;
-    createdBy: Person;
+    assignedToUsername: string;
+    createdByUsername: string;
+}
+function postTask(inputs) {
+    const item: ToDoItem = {
+        id: inputs.id.value,
+        date: inputs.date.value,
+        startTime: inputs.startTime.value,
+        endTime: inputs.endTime.value,
+        text: inputs.text.value,
+        progress: inputs.progress.value,
+        assignedToUsername: inputs.assignedTo.value,
+        createdByUsername: null
+    }
+
+    fetch("/todoitems", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(item)
+    })
+    .then(response => {
+        if (!response.ok) {
+            console.error("Failed to save data.");
+        }
+        else {
+            clearEditor();
+            loadToDoItems(getCurrentDate())
+        }
+    })
+    .catch(function (error) {
+        console.error("Error:", error);
+    });
 }
 
 function loadToDoItems(date: Date) {
@@ -73,6 +106,11 @@ function generateToDoItemDiv(toDoItem: ToDoItem, differentMonth: boolean): Eleme
     toDoItemDiv.setAttribute("onmouseover", "displayTodoitemDetails(this)");
     toDoItemDiv.setAttribute("onmouseout", "hideTodoitemDetails(this)");
     toDoItemDiv.setAttribute("onclick", `populateEditor(${JSON.stringify(toDoItem)})`);
+
+    const id = document.createElement("span");
+    id.style.display = "none";
+    id.innerHTML = toDoItem.id.toString();
+    toDoItemDiv.appendChild(id);
 
     const timeRange = document.createElement("p");
     timeRange.classList.add("todoitems-item-time");
