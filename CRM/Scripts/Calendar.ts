@@ -71,6 +71,20 @@ function getCurrentDate() {
     return new Date(Number(year), Number(month) - 1, 1);
 }
 
+function getData(url: string): any {
+    return fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => data)
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+}
+
 function postTask(inputs) {
     const item: ToDoItem = {
         id: inputs.id.value,
@@ -107,24 +121,17 @@ function postTask(inputs) {
 function loadToDoItems(date: Date) {
     const apiUrl = `/todoitems?year=${date.getFullYear()}&month=${date.getMonth() + 1}`;
 
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            data.forEach((toDoItem: ToDoItem) => {
-                const day = document.getElementById(`${toDoItem.date}`);
-                if(day != undefined) {
-                    day.appendChild(generateToDoItemDiv(toDoItem, false));
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-        });
+    const toDoItems = getData(apiUrl)
+
+    const allToDoItems = document.querySelectorAll(".todoitems");
+    allToDoItems.forEach(item => item.innerHTML = "");
+
+    toDoItems.forEach((toDoItem: ToDoItem) => {
+        const day = document.getElementById(`${toDoItem.date}`);
+        if (day != undefined) {
+            day.appendChild(generateToDoItemDiv(toDoItem, false));
+        }
+    });
 }
 
 function generateToDoItemDiv(toDoItem: ToDoItem, differentMonth: boolean): Element {
