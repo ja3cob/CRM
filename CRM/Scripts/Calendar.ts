@@ -1,3 +1,22 @@
+﻿function clearEditor() {
+    document.querySelector(".task-editor-title").innerHTML = "Stwórz zadanie";
+
+    const inputs = document.querySelectorAll(".task-editor-form input, .input-text");
+    inputs.forEach(input => (<HTMLInputElement>input).value = "");
+
+    const assignedPerson = (<HTMLInputElement>document.querySelector(".select-assigned-person"));
+    assignedPerson.value = "default";
+    assignedPerson.style.color = "gray";
+
+    const inputProgress = (<HTMLInputElement>document.querySelector(".input-progress"));
+    inputProgress.value = "0";
+    updateProgressValue(inputProgress.value);
+}
+
+function updateProgressValue(progress) {
+    document.querySelector(".input-progress-value").innerHTML = progress + '%';
+}
+
 ﻿function loadDays(days: Date[], calendarBody: Element) {    
     for(let week = 0, arrayIndex = 0; week < daysInCalendar / daysInWeek; week++) {
         let tr = document.createElement("tr");
@@ -44,6 +63,20 @@ interface ToDoItem {
     assignedToUsername: string;
     createdByUsername: string;
 }
+
+function getCurrentDate() {
+    const urlParams = new URLSearchParams(window.location.search);
+    var year = urlParams.get('year');
+    var month = urlParams.get('month');
+    if (year == undefined || month == undefined
+        || isNaN(Number(year)) || isNaN(Number(month))) {
+        let currentDate = new Date();
+        year = currentDate.getFullYear().toString();
+        month = (currentDate.getMonth() + 1).toString();
+    }
+    return new Date(Number(year), Number(month) - 1, 1);
+}
+
 function postTask(inputs) {
     const item: ToDoItem = {
         id: inputs.id.value,

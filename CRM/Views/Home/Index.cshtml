@@ -106,18 +106,6 @@
             loadDays(generateMonth(currentDate), calendar);
             loadToDoItems(currentDate);
         }
-        function getCurrentDate() {
-            const urlParams = new URLSearchParams(window.location.search);
-            var year = urlParams.get('year');
-            var month = urlParams.get('month');
-            if (year == undefined || month == undefined
-                || isNaN(year) || isNaN(month)) {
-                let currentDate = new Date();
-                year = currentDate.getFullYear();
-                month = currentDate.getMonth() + 1;
-            }
-            return new Date(year, month - 1, 1);
-        }
         function changeMonth(change) {
             const currentDate = getCurrentDate();
             currentDate.setMonth(currentDate.getMonth() + Number(change));
@@ -152,43 +140,9 @@
         function updateSelect() {
             document.querySelector(".select-assigned-person").style.color = "black";
         }
-        function updateProgressValue(progress) {
-            document.querySelector(".input-progress-value").innerHTML = progress + '%';
-        }
-        function clearEditor() {
-            const inputs = document.querySelectorAll(".task-editor-form input, .input-text");
-            inputs.forEach(input => input.value = "");
-
-            const assignedPerson = document.querySelector(".select-assigned-person");
-            assignedPerson.value = "default";
-            assignedPerson.style.color = "gray";
-
-            const inputProgress = document.querySelector(".input-progress");
-            inputProgress.value = 0;
-            updateProgressValue(inputProgress.value);
-        }
         function saveTask() {
             const inputs = getInputs();
             postTask(inputs);
-        }
-        async function postDataUsingFetch() {
-            fetch("/Home", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            })
-            .then(async function (response) {
-                if (response.ok) {
-                    const data = await response.text();
-                    console.log(data);
-                } else {
-                    console.error("Failed to post data.");
-                }
-            })
-            .catch(function (error) {
-                console.error("Error:", error);
-            });
         }
         function displayTodoitemDetails(item) {
             const rect = item.getBoundingClientRect();
@@ -198,10 +152,6 @@
             details.style.left = (rect.left + item.offsetWidth + 2) + 'px';
             details.style.top = rect.top + 'px';
             details.classList.add("show");
-            /*window.history.pushState("huh", "huh", "/huj");
-            console.log(window.location);
-
-            document.querySelector(".task-editor-form").querySelector(".input-wrapper").= 'hujj';*/
         }
         function hideTodoitemDetails(item) {
             const details = item.querySelector(".todoitems-item-details");
