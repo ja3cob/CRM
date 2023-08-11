@@ -14,7 +14,7 @@ namespace CRM.Services
 
 		public ToDoItem? Get(int id)
 		{
-			return _dbContext.ToDoItems.First(x => x.Id == id);
+			return _dbContext.ToDoItems.FirstOrDefault(x => x.Id == id);
 		}
         public IEnumerable<ToDoItem> GetList(int year, int month)
         {
