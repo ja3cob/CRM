@@ -4,7 +4,7 @@ namespace CRM.Models.Database
 {
     public class ToDoItem
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public DateOnly Date { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
@@ -13,7 +13,7 @@ namespace CRM.Models.Database
 
         public string? AssignedToUsername { get; set; }
         public Person? AssignedTo { get; set; }
-        public string CreatedByUsername { get; set; } = null!;
-        public Person CreatedBy { get; set; } = null!;
+        public string? CreatedByUsername { get; set; }
+        public Person? CreatedBy { get; set; }
     }
 }

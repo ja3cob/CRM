@@ -8,6 +8,7 @@ public class CRMDbContext : DbContext
     public CRMDbContext(DbContextOptions options) : base(options) { }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Configure conversions
         modelBuilder.Entity<ToDoItem>(builder =>
         {
             // Date is a DateOnly property and date on database
@@ -21,7 +22,12 @@ public class CRMDbContext : DbContext
                 .HasConversion<TimeOnlyConverter, TimeOnlyComparer>();
         });
         modelBuilder.Entity<ToDoItem>()
-            .HasOne(x => x.CreatedBy);
+    .Property(x => x.Id).IsRequired();
+
+        modelBuilder.Entity<ToDoItem>()
+          .HasOne(x => x.CreatedBy)
+          .WithMany()
+          .IsRequired();
         modelBuilder.Entity<ToDoItem>()
             .HasOne(x => x.AssignedTo);
     }
