@@ -15,6 +15,10 @@ namespace CRM.Services
         {
             return _dbContext.People.FirstOrDefault(x => x.Username == username);
         }
+        public IEnumerable<Person> GetList() 
+        {
+            return _dbContext.People;
+        }
         public void Save(Person person)
         {
             if (string.IsNullOrWhiteSpace(person.Username))
