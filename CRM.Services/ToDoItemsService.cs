@@ -37,6 +37,10 @@ namespace CRM.Services
 			_dbContext.ToDoItems.Add(toDoItem);
 			_dbContext.SaveChanges();
 		}
+		public void Delete(int id)
+		{
+			_dbContext.ToDoItems.Where(x => x.Id == id).ExecuteDelete();
+		}
     }
 }
 

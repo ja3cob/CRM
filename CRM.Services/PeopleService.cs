@@ -1,5 +1,6 @@
 ﻿using CRM.Database;
 using CRM.Models.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRM.Services
 {
@@ -34,6 +35,10 @@ namespace CRM.Services
 
             _dbContext.People.Add(person);
             _dbContext.SaveChanges();
+        }
+        public void Delete(string username)
+        {
+            _dbContext.People.Where(x => x.Username == username).ExecuteDelete();
         }
     }
 }
