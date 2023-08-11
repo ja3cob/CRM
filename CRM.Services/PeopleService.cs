@@ -11,12 +11,23 @@ namespace CRM.Services
             _dbContext = dbContext;
         }
 
-        public Person Get(string username)
+        public Person? Get(string username)
         {
-            return _dbContext.People.First(x => x.Username == username);
+            return _dbContext.People.FirstOrDefault(x => x.Username == username);
         }
-        public void Add(Person person)
+        public void Save(Person person)
         {
+            if (string.IsNullOrWhiteSpace(person.Username))
+            {
+                var oldPerson = Get(person.Username);
+                if (oldPerson != null)
+                {
+                    _dbContext.Entry(oldPerson).CurrentValues.SetValues(person);
+                    _dbContext.SaveChanges();
+                    return;
+                }
+            }
+
             _dbContext.People.Add(person);
             _dbContext.SaveChanges();
         }
