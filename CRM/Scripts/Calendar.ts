@@ -17,7 +17,7 @@ function updateProgressValue(progress) {
     document.querySelector(".input-progress-value").innerHTML = progress + '%';
 }
 
-﻿function loadDays(days: Date[], calendarBody: Element) {    
+function loadDays(days: Date[], calendarBody: Element) {    
     for(let week = 0, arrayIndex = 0; week < daysInCalendar / daysInWeek; week++) {
         let tr = document.createElement("tr");
 
@@ -47,12 +47,6 @@ function updateProgressValue(progress) {
     }
 }
 
-interface Person {
-    username: string;
-    firstName: string;
-    lastName: string;
-    role: number;
-}
 interface ToDoItem {
     id: number;
     date: string;
