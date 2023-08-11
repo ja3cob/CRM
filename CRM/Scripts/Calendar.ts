@@ -152,16 +152,16 @@ function generateToDoItemDetails(toDoItem: ToDoItem): Element {
     const assignedTo = document.createElement("p");
     assignedTo.classList.add("todoitems-item-details-assignedto");
     assignedTo.innerHTML = "Przydzielony: ";
-    if (toDoItem.assignedTo == null) {
+    if (toDoItem.assignedToUsername == null) {
         assignedTo.innerHTML += "brak";
     } else {
-        assignedTo.innerHTML += toDoItem.assignedTo.username;
+        assignedTo.innerHTML += toDoItem.assignedToUsername;
     }
     detailsDiv.appendChild(assignedTo);
 
     const createdBy = document.createElement("p");
     createdBy.classList.add("todoitems-item-details-createdby");
-    createdBy.innerHTML = "Utworzył: " + toDoItem.createdBy.username;
+    createdBy.innerHTML = "Utworzył: " + toDoItem.createdByUsername;
     detailsDiv.appendChild(createdBy);
 
     return detailsDiv;
