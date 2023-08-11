@@ -1,6 +1,6 @@
 using CRM.Database;
 using CRM.Services;
-using CRM.Services.Util;
+using CRM.Utilities;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 

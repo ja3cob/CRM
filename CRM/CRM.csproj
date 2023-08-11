@@ -31,6 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CRM.Services\CRM.Services.csproj" />
     <ProjectReference Include="..\CRM.Database\CRM.Database.csproj" />
+    <ProjectReference Include="..\CRM.Utilities\CRM.Utilities.csproj" />
   </ItemGroup>
 
 </Project>
