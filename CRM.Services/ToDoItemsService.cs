@@ -10,7 +10,6 @@ namespace CRM.Services
 		public ToDoItemsService(CRMDbContext dbContext)
 		{
             _dbContext = dbContext;
-			_dbContext.Database.EnsureCreated();
 		}
 
 		public ToDoItem? Get(int id)
