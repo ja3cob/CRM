@@ -37,6 +37,7 @@
         <div class="task-editor">
             <h1 class="task-editor-title">Edytuj / stwórz zadanie</h1>
             <form class="task-editor-form" action="">
+                <input name="id" type="number" hidden />
                 <div class="input-wrapper">
                     <input class="input-date" name="date" type="date" />
                     <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
@@ -116,6 +117,7 @@
 
         function getInputs() {
             return {
+                id: document.querySelector("input[name=id]"),
                 date: document.querySelector(".input-date"),
                 startTime: document.querySelector("input[name=start-time]"),
                 endTime: document.querySelector("input[name=end-time]"),
@@ -126,6 +128,7 @@
         }
         function populateEditor(item) {
             const inputs = getInputs();
+            inputs.id.value = item.id;
             inputs.date.value = item.date;
             inputs.startTime.value = item.startTime;
             inputs.endTime.value = item.endTime;
