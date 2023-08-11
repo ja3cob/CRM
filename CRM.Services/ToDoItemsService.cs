@@ -18,7 +18,7 @@ namespace CRM.Services
 		}
         public IEnumerable<ToDoItem> GetList(int year, int month)
         {
-			var ret = _dbContext.ToDoItems.Include(p => p.CreatedBy).Where(p => p.Date == new DateOnly(year, month, 1));
+            var ret = _dbContext.ToDoItems.Include(p => p.CreatedBy).Where(p => p.Date.Year == year && p.Date.Month == month);
 			return ret;
         }
 		public void Save(ToDoItem toDoItem)
@@ -27,7 +27,7 @@ namespace CRM.Services
 			{
 				var oldItem = Get(toDoItem.Id.Value);
 				if(oldItem != null)
-		{
+				{
 					_dbContext.Entry(oldItem).CurrentValues.SetValues(toDoItem);
                     _dbContext.SaveChanges();
 					return;
