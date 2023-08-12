@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace CRM.Models.Database
+﻿namespace CRM.Models
 {
     public class ToDoItem
     {

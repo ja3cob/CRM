@@ -1,4 +1,4 @@
-﻿using CRM.Models.Database;
+﻿using CRM.Models;
 using CRM.Utilities;
 using Microsoft.EntityFrameworkCore;
 

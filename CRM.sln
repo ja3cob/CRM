@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRM.Models", "CRM.Models\CR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRM.Database", "CRM.Database\CRM.Database.csproj", "{7AF91E61-07D6-4D64-8DA3-8135C78BD27C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Utilities", "CRM.Utilities\CRM.Utilities.csproj", "{D80550D5-0D5A-4B0F-9C9E-FA41B402BB91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRM.Utilities", "CRM.Utilities\CRM.Utilities.csproj", "{D80550D5-0D5A-4B0F-9C9E-FA41B402BB91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

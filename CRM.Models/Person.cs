@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-namespace CRM.Models.Database
+namespace CRM.Models
 {
     public class Person
     {

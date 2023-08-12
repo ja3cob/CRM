@@ -1,4 +1,4 @@
-﻿using CRM.Models.Database;
+﻿using CRM.Models;
 
 namespace CRM.Services
 {
