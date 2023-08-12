@@ -1,0 +1,28 @@
+﻿<div class="people-container">
+    <div class="people-list">
+
+    </div>
+</div>
+
+@section Scripts 
+{
+    <script>
+         fetch("/people")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.forEach(person => {
+                    const p = document.createElement("p");
+                    p.innerHTML = person.username + " " + person.firstName + " " + person.lastName;
+                    document.querySelector(".people-list").appendChild(p);
+                })
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    </script>
+}
