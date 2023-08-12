@@ -223,7 +223,7 @@ a {
 }
 
 .tasks-controls {
-    padding: 50px;
+    padding: 20px;
 }
 .task-editor-title {
     color: var(--color-background);
