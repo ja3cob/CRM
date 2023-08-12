@@ -8,7 +8,7 @@
     }
 }
 
-﻿function clearEditor() {
+function clearEditor() {
     document.querySelector(".task-editor-title").innerHTML = "Stwórz zadanie";
 
     const inputs = document.querySelectorAll(".task-editor-form input, .input-text");
@@ -16,11 +16,12 @@
 
     const assignedPerson = (<HTMLInputElement>document.querySelector(".select-assigned-person"));
     assignedPerson.value = "default";
-    assignedPerson.style.color = "gray";
 
     const inputProgress = (<HTMLInputElement>document.querySelector(".input-progress"));
     inputProgress.value = "0";
+
     updateProgressValue(inputProgress.value);
+    updateSelect();
 }
 
 function updateProgressValue(progress) {
