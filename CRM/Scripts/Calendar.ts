@@ -129,15 +129,15 @@ function loadToDoItems(date: Date) {
 
     getData(apiUrl).then(toDoItems => {
 
-    const allToDoItems = document.querySelectorAll(".todoitems");
-    allToDoItems.forEach(item => item.innerHTML = "");
+        const allToDoItems = document.querySelectorAll(".todoitems");
+        allToDoItems.forEach(item => item.innerHTML = "");
 
-    toDoItems.forEach((toDoItem: ToDoItem) => {
-        const day = document.getElementById(`${toDoItem.date}`);
-        if (day != undefined) {
-            day.appendChild(generateToDoItemDiv(toDoItem, false));
-        }
-    });
+        toDoItems.forEach((toDoItem: ToDoItem) => {
+            const day = document.getElementById(`${toDoItem.date}`);
+            if (day != undefined) {
+                day.appendChild(generateToDoItemDiv(toDoItem, false));
+            }
+        });
     });
 }
 
@@ -234,4 +234,18 @@ function generatePercentageCircle(progress: number, small: boolean): Element {
     circleDiv.appendChild(sliceDiv);
 
     return circleDiv;
+}
+
+function loadPeople() {
+    const apiUrl = '/people';
+
+    const dropDown = document.querySelector('.select-assigned-person');
+    getData(apiUrl).then(people => {
+        people.forEach((person: Person) => {
+            const option = document.createElement('option');
+            option.setAttribute('value', person.username);
+            option.innerHTML = person.username;
+            dropDown.appendChild(option);
+        });
+    });
 }
