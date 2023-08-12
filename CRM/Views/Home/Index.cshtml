@@ -56,7 +56,7 @@
                 </div>
                 <div class="input-wrapper">
                     <select class="select-assigned-person" name="assigned-person" onchange="updateSelect(this)">
-                        <option value="default" selected disabled hidden>Przydzielony...</option>
+                        <option value="default" selected>Przydzielony...</option>
                     </select>
                     <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
                 </div>
@@ -125,6 +125,10 @@
         }
         function populateEditor(item) {
             document.querySelector(".task-editor-title").innerHTML = "Edytuj zadanie";
+
+            if(item.assignedToUsername == undefined) {
+                item.assignedToUsername = "default";
+            }
 
             const inputs = getInputs();
             inputs.id.value = item.id;
