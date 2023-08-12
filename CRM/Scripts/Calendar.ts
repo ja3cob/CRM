@@ -113,6 +113,13 @@ function postTask(inputs) {
         createdByUsername: null
     }
 
+    if (item.id.toString().length < 1 || isNaN(Number(item.id))) {
+        item.id = null;
+    }
+    if (item.assignedToUsername.length < 1 || item.assignedToUsername == "default") {
+        item.assignedToUsername = null;
+    }
+
     fetch("/todoitems", {
         method: "POST",
         headers: {
