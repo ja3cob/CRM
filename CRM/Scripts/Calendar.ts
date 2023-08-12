@@ -127,7 +127,7 @@ function postTask(inputs) {
 function loadToDoItems(date: Date) {
     const apiUrl = `/todoitems?year=${date.getFullYear()}&month=${date.getMonth() + 1}`;
 
-    const toDoItems = getData(apiUrl)
+    getData(apiUrl).then(toDoItems => {
 
     const allToDoItems = document.querySelectorAll(".todoitems");
     allToDoItems.forEach(item => item.innerHTML = "");
@@ -137,6 +137,7 @@ function loadToDoItems(date: Date) {
         if (day != undefined) {
             day.appendChild(generateToDoItemDiv(toDoItem, false));
         }
+    });
     });
 }
 
