@@ -1,3 +1,13 @@
+﻿function updateSelect() {
+    const select = <HTMLSelectElement>document.querySelector(".select-assigned-person");
+    if (select.value == "default") {
+        select.style.color = "gray";
+    }
+    else {
+        select.style.color = "black";
+    }
+}
+
 ﻿function clearEditor() {
     document.querySelector(".task-editor-title").innerHTML = "Stwórz zadanie";
 
