@@ -1,5 +1,3 @@
-﻿using CRM.Models.General;
-using CRM.Services;
 using CRM.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -11,12 +9,9 @@ namespace CRM.Controllers
         public HomeController() { }
 
         [HttpGet]
-        public IActionResult Index([FromRoute] int? year, [FromRoute] int? month)
+        public IActionResult Index()
         {
-            if(!year.HasValue || !month.HasValue)
-            {
-                year = DateTime.Now.Year;
-                month = DateTime.Now.Month;
+            return View();
             }
             if(month > 12 || month < 1)
             {

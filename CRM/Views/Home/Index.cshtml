@@ -1,13 +1,4 @@
-﻿@model CRM.Models.General.Month
-@using Newtonsoft.Json;
-@using Newtonsoft.Json.Serialization;
-@{
-    ViewData["Title"] = "Home Page";
-    var prevMonth = @Model.Date.AddMonths(-1);
-    var nextMonth = @Model.Date.AddMonths(1);
-}
-
-<div class="tasks-container">
+﻿<div class="tasks-container">
     <div class="tasks-calendar">
         <div class="tasks-calendar-header">
             <div class="tasks-calendar-buttons">
