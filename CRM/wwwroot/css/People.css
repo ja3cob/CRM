@@ -1,0 +1,71 @@
+﻿.people-container {
+    width: 100%;
+    padding: 100px 200px;
+}
+
+.people-controls {
+    display: flex;
+    justify-content: right;
+    padding: 0 10px;
+}
+
+.btn-add-person {
+    font-size: 1.5rem;
+    border-radius: 10px;
+}
+
+.people-list {
+    margin: 0 auto;
+}
+
+.people-row {
+    display: flex;
+    align-items: center;
+    padding: 30px 10px;
+    overflow-wrap: break-word;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.people-row:nth-child(even) {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+}
+
+.people-row:nth-child(even) .row-buttons .btn-edit {
+    border-color: var(--color-background);
+    color: var(--color-background);
+}
+
+.people-row:nth-child(even) .row-buttons .btn-edit:hover {
+    border-color: var(--color-primary);
+}
+
+.people-row.row-header {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+.row-username {
+    width: 19%;
+}
+
+.row-firstname, .row-lastname, .row-role {
+    width: 22%;
+}
+
+.row-buttons {
+    width: 15%;
+    display: flex;
+    gap: 4px;
+}
+
+.row-buttons > button {
+    flex: 1;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.row-buttons .btn-delete {
+    background-color: #d11a2a;
+}
