@@ -14,7 +14,7 @@
 
 .navbar * {
     text-decoration: none;
-    color: var(--color-text);
+    color: var(--color-accent);
 }
 
 .navbar-menu {
