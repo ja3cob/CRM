@@ -6,10 +6,10 @@
         <div class="people-row row-header">
             <div class="row-username">
                 Nazwa użytkownika
-    </div>
+            </div>
             <div class="row-firstname">
                 Imię
-</div>
+            </div>
             <div class="row-lastname">
                 Nazwisko
             </div>
@@ -27,23 +27,6 @@
 
 @section Scripts 
 {
-    <script>
-         fetch("/people")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                data.forEach(person => {
-                    const p = document.createElement("p");
-                    p.innerHTML = person.username + " " + person.firstName + " " + person.lastName;
-                    document.querySelector(".people-list").appendChild(p);
-                })
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-            });
-    </script>
+    <script src="~/js/People.js"></script>
+    <script>loadUsers();</script>
 }
