@@ -38,3 +38,7 @@
     /*--color-primary #6495ED*/
     background-color: rgba(100, 149, 237, 0.5);
 }
+
+body {
+    background-color: var(--color-background);
+}
