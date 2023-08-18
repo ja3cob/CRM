@@ -9,9 +9,9 @@
         public string? Text { get; set; }
         public int Progress { get; set; }
 
-        public string? AssignedToUsername { get; set; }
+        public int? AssignedToId { get; set; }
         public Person? AssignedTo { get; set; }
-        public string? CreatedByUsername { get; set; }
+        public int? CreatedById { get; set; }
         public Person? CreatedBy { get; set; }
     }
 }
