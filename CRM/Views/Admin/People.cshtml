@@ -20,9 +20,50 @@
     </div>
 </div>
 
+<div class="person-editor-container">
+    <div class="person-editor-mask"></div>
+    <div class="person-editor">
+        <div class="person-editor-buttons">
+            <i class="fa fa-times" onclick="hideEditor()"></i>
+        </div>
+        <h1 class="person-editor-title">Dodaj użytkownika</h1>
+        <form class="person-editor-form" action="">
+            <p>Nazwa użytkownika</p>
+            <div class="input-wrapper">
+                <input class="input-text" name="username" type="text" />
+                <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <p>Imię</p>
+            <div class="input-wrapper">
+                <input class="input-text" name="firstName" type="text" />
+                <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <p>Nazwisko</p>
+            <div class="input-wrapper">
+                <input class="input-text" name="lastName" type="text" />
+                <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <p>Rola</p>
+            <div class="input-wrapper">
+                <select class="input-select select-role" name="role" onchange="updateSelect(this)">
+                    <option value="default" selected hidden disabled>Wybierz...</option>
+                </select>
+                <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <p>Hasło</p>
+            <div class="input-wrapper">
+                <input class="input-text" name="password" type="password" />
+                <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <button class="btn-save btn btn--primary" type="button" onclick="saveTask()">Zapisz</button>
+        </form>
+    </div>
+</div>
+
 @section Styles
 {
     <link rel="stylesheet" href="~/css/People.css" />
+    <link rel="stylesheet" href="~/css/CommonForm.css" />
 }
 
 @section Scripts 

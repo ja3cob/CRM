@@ -47,3 +47,13 @@ function loadUsers() {
             document.querySelector(".people-list").appendChild(row);
     }));
 }
+
+function showEditor() {
+    document.querySelectorAll(".person-editor, .person-editor-mask")
+        .forEach(element => element.classList.remove("hidden"));
+}
+
+function hideEditor() {
+    document.querySelectorAll(".person-editor, .person-editor-mask")
+        .forEach(element => element.classList.add("hidden"));
+}
