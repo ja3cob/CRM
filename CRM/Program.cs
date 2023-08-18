@@ -36,7 +36,7 @@ namespace CRM
             try
             {
                 using var scope = builder.Services.BuildServiceProvider().CreateScope();
-                await scope.ServiceProvider.GetRequiredService<CRMDbContext>().Database.EnsureCreatedAsync();
+                await scope.ServiceProvider.GetRequiredService<CRMDbContext>().Database.MigrateAsync();
             }
             catch (Exception ex)
             {
