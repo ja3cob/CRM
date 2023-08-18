@@ -233,66 +233,8 @@ a {
     margin: 30px auto;
     width: 500px;
 }
-.input-wrapper {
-    position: relative;
-    display: block;
-    width: 100%;
-    margin-bottom: 15px;
-}
-.input-wrapper > *, .time-range > input {
-    border-radius: 15px;
-}
-.input-wrapper * {
-    font-size: 2rem;
-}
-.input-date {
-    text-align: center;
-    padding: 5px 0;
-    margin: 0 auto;
-    display: block;
-}
-.time-range {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-.time-range > i {
-    color: var(--color-background);
-}
-.time-range > input {
-    padding: 0 10px;
-}
 .input-text {
-    display: block;
-    width: 100%;
-    resize: none;
-    font-size: 1.5rem;
     height: calc(4 * 1.5rem);
-    padding: 7px;
-}
-.select-assigned-person {
-    width: 100%;
-    display: block;
-    padding: 8px;
-    color: gray;
-}
-.select-assigned-person, .select-assigned-person > option {
-    font-size: 1.5rem;
-}
-.input-progress-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-}
-.input-progress {
-    width: 80%;
-}
-.input-progress-value {
-    text-align: right;
-    width: 20%;
-    color: var(--color-background);
 }
 .task-editor-buttons {
     display: flex;
@@ -301,29 +243,4 @@ a {
 .task-editor-buttons > button {
     flex: 1;
     font-size: 2rem;
-}
-
-.incorrect-input {
-    opacity: 0;
-    position: absolute;
-    left: calc(100% + 10px);
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    background-color: red;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    transition: opacity 1s;
-}
-.incorrect-input.show {
-    opacity: 1;
-}
-.incorrect-input > i {
-    font-size: 72%;
-    color: white;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -49%);
 }
