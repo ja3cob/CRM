@@ -1,5 +1,8 @@
-﻿using CRM.Database;
+﻿using System.Net;
+
+using CRM.Database;
 using CRM.Models;
+using CRM.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CRM.Services
@@ -20,20 +23,28 @@ namespace CRM.Services
         {
             return _dbContext.People;
         }
-        public void Save(Person person)
+        public void Add(Person person)
         {
+            if(Get(person.Username) != null)
+            {
+                throw new RequestException("Username already exists", HttpStatusCode.BadRequest);
+            }
+            _dbContext.People.Add(person);
+            _dbContext.SaveChanges();
+        }
+        public void Update(string username, Person person)
+        {
+            var oldPerson = Get(username);
+            if (oldPerson == null)
+            {
+                throw new RequestException("User does not exist", HttpStatusCode.BadRequest);
+            }
             if (string.IsNullOrWhiteSpace(person.Username))
             {
-                var oldPerson = Get(person.Username);
-                if (oldPerson != null)
-                {
-                    _dbContext.Entry(oldPerson).CurrentValues.SetValues(person);
-                    _dbContext.SaveChanges();
-                    return;
-                }
+                throw new RequestException("Username cannot be empty", HttpStatusCode.BadRequest);
             }
 
-            _dbContext.People.Add(person);
+            _dbContext.Entry(oldPerson).CurrentValues.SetValues(person);
             _dbContext.SaveChanges();
         }
         public void Delete(string username)
