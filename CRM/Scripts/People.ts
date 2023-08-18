@@ -85,11 +85,8 @@ function resetPersonEditor() {
 }
 
 function showPersonEditor(person: Person) {
-    const inputs = getPersonInputs();
-
     if (person != undefined && person.username.length > 0) {
-        inputs.username.disabled = true;
-        document.querySelector(".btn-save").setAttribute("onclick", "editPerson()");
+        document.querySelector(".btn-save").setAttribute("onclick", `editPerson('${person.username}')`);
 
         const title = document.querySelector(".person-editor-title");
         title.innerHTML = title.innerHTML.replace("Dodaj", "Edytuj");
@@ -110,4 +107,20 @@ function showPersonEditor(person: Person) {
 
 function hidePersonEditor() {
     document.querySelector(".person-editor-container").classList.add("hidden");
+}
+function editPerson(username: string) {
+    const inputs = getPersonInputs();
+    const person: Person = {
+        username: inputs.username.value,
+        firstName: inputs.firstName.value,
+        lastName: inputs.lastName.value,
+        role: Number(inputs.role.value)
+    };
+
+    postData(`/people/${username}`, person).then(response => {
+        if (response.ok) {
+            updatePersonData(username, person);
+            hidePersonEditor();
+        }
+    });
 }
