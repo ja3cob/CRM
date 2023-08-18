@@ -22,18 +22,22 @@ public class CRMDbContext : DbContext
                 .HasConversion<TimeOnlyConverter, TimeOnlyComparer>();
         });
         modelBuilder.Entity<ToDoItem>()
-    .Property(x => x.Id).IsRequired();
+            .Property(x => x.Id).IsRequired();
 
         modelBuilder.Entity<ToDoItem>()
-          .HasOne(x => x.CreatedBy)
-          .WithMany()
-          .IsRequired();
+            .HasOne(x => x.CreatedBy)
+            .WithMany()
+            .IsRequired();
         modelBuilder.Entity<ToDoItem>()
             .HasOne(x => x.AssignedTo);
 
 
         modelBuilder.Entity<Person>()
             .Property(x => x.Id).IsRequired();
+        modelBuilder.Entity<Person>()
+            .Property(x => x.Password).IsRequired();
+        modelBuilder.Entity<Person>()
+            .HasIndex(x => x.Username).IsUnique();
     }
     public DbSet<Person> People { get; set; }
     public DbSet<ToDoItem> ToDoItems { get; set; }
