@@ -49,12 +49,10 @@ function loadUsers() {
     }));
 }
 
-function showEditor() {
-    document.querySelectorAll(".person-editor, .person-editor-mask")
-        .forEach(element => element.classList.remove("hidden"));
+function showPersonEditor() {
+    document.querySelector(".person-editor-container").classList.remove("hidden");
 }
 
-function hideEditor() {
-    document.querySelectorAll(".person-editor, .person-editor-mask")
-        .forEach(element => element.classList.add("hidden"));
+function hidePersonEditor() {
+    document.querySelector(".person-editor-container").classList.add("hidden");
 }
