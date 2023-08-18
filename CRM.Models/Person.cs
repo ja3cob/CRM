@@ -4,7 +4,8 @@ namespace CRM.Models
 {
     public class Person
     {
-        [Key]
+        [JsonIgnore]
+        public int? Id { get; set; }
         public string Username { get; set; } = null!;
         [JsonIgnore]
         public string HashedPassword { get; set; } = null!;

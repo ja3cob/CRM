@@ -30,6 +30,10 @@ public class CRMDbContext : DbContext
           .IsRequired();
         modelBuilder.Entity<ToDoItem>()
             .HasOne(x => x.AssignedTo);
+
+
+        modelBuilder.Entity<Person>()
+            .Property(x => x.Id).IsRequired();
     }
     public DbSet<Person> People { get; set; }
     public DbSet<ToDoItem> ToDoItems { get; set; }
