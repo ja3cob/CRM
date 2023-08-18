@@ -1,6 +1,4 @@
-﻿function loadUsers() {
-    getData("/people")
-        .then((people: Person[]) => people.forEach(person => {
+﻿function addPersonToList(person: Person) {
             const row = document.createElement("div");
             row.classList.add("people-row");
 
@@ -46,6 +44,12 @@
 
 
             document.querySelector(".people-list").appendChild(row);
+}
+
+function loadUsers() {
+    getData("/people")
+        .then((people: Person[]) => people.forEach(person => {
+            addPersonToList(person);
     }));
 }
 
