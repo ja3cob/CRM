@@ -1,5 +1,5 @@
-function loadUsers() {
-    getDataa("/people")
+﻿function loadUsers() {
+    getData("/people")
         .then((people: Person[]) => people.forEach(person => {
             const row = document.createElement("div");
             row.classList.add("people-row");
@@ -31,7 +31,7 @@ function loadUsers() {
             editButton.classList.add("btn-edit");
             editButton.classList.add("btn");
             editButton.classList.add("btn--outline");
-                editButton.setAttribute("onclick", "showEditor()");
+            editButton.setAttribute("onclick", `showPersonEditor(${JSON.stringify(person)})`);
             editButton.innerHTML = "Edytuj";
             buttons.appendChild(editButton);
 
@@ -49,7 +49,58 @@ function loadUsers() {
     }));
 }
 
-function showPersonEditor() {
+function getPersonInputs() {
+    return {
+        username: <HTMLInputElement>document.querySelector("input[name=username]"),
+        firstName: <HTMLInputElement>document.querySelector("input[name=firstName]"),
+        lastName: <HTMLInputElement>document.querySelector("input[name=lastName]"),
+        role: <HTMLSelectElement>document.querySelector("select[name=role]"),
+        password: <HTMLInputElement>document.querySelector("input[name=password]")
+    }
+}
+
+function populatePersonEditor(person: Person) {
+    const inputs = getPersonInputs();
+    inputs.username.value = person.username;
+    inputs.firstName.value = person.firstName;
+    inputs.lastName.value = person.lastName;
+    inputs.role.value = person.role.toString();
+
+    updateSelect(inputs.role);
+}
+
+function resetPersonEditor() {
+    const inputs = getPersonInputs();
+    inputs.username.value = "";
+    inputs.firstName.value = "";
+    inputs.lastName.value = "";
+    inputs.role.value = "default";
+    inputs.password.value = "";
+
+    updateSelect(inputs.role);
+}
+
+function showPersonEditor(person: Person) {
+    const inputs = getPersonInputs();
+
+    if (person != undefined && person.username.length > 0) {
+        inputs.username.disabled = true;
+        document.querySelector(".btn-save").setAttribute("onclick", "editPerson()");
+
+        const title = document.querySelector(".person-editor-title");
+        title.innerHTML = title.innerHTML.replace("Dodaj", "Edytuj");
+
+        populatePersonEditor(person);
+    }
+    else {
+        document.querySelector(".btn-save").setAttribute("onclick", "addPerson()");
+
+        const title = document.querySelector(".person-editor-title");
+        title.innerHTML = title.innerHTML.replace("Edytuj", "Dodaj");
+
+        resetPersonEditor();
+    }
+
     document.querySelector(".person-editor-container").classList.remove("hidden");
 }
 
