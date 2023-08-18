@@ -3,6 +3,7 @@
     firstName: string;
     lastName: string;
     role: number;
+    password: string;
 }
 interface ToDoItem {
     id: number;

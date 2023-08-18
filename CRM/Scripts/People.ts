@@ -115,7 +115,8 @@ function addPerson() {
         username: inputs.username.value,
         firstName: inputs.firstName.value,
         lastName: inputs.lastName.value,
-        role: Number(inputs.role.value)
+        role: Number(inputs.role.value),
+        password: inputs.password.value
     };
 
     postData("/people", person).then(response => {
@@ -144,7 +145,8 @@ function editPerson(username: string) {
         username: inputs.username.value,
         firstName: inputs.firstName.value,
         lastName: inputs.lastName.value,
-        role: Number(inputs.role.value)
+        role: Number(inputs.role.value),
+        password: inputs.password.value
     };
 
     postData(`/people/${username}`, person).then(response => {
