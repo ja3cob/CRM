@@ -1,24 +1,3 @@
-﻿function getDataa(url: string): any {
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => data)
-        .catch(error => {
-            console.error('Fetch error:', error);
-        });
-}
-
-interface Person {
-    username: string;
-    firstName: string;
-    lastName: string;
-    role: number;
-}
-
 function loadUsers() {
     getDataa("/people")
         .then((people: Person[]) => people.forEach(person => {

@@ -1,27 +1,17 @@
-﻿function updateSelect() {
-    const select = <HTMLSelectElement>document.querySelector(".select-assigned-person");
-    if (select.value == "default") {
-        select.style.color = "gray";
-    }
-    else {
-        select.style.color = "black";
-    }
-}
-
 function clearEditor() {
     document.querySelector(".task-editor-title").innerHTML = "Stwórz zadanie";
 
     const inputs = document.querySelectorAll(".task-editor-form input, .input-text");
     inputs.forEach(input => (<HTMLInputElement>input).value = "");
 
-    const assignedPerson = (<HTMLInputElement>document.querySelector(".select-assigned-person"));
+    const assignedPerson = (<HTMLSelectElement>document.querySelector(".select-assigned-person"));
     assignedPerson.value = "default";
 
     const inputProgress = (<HTMLInputElement>document.querySelector(".input-progress"));
     inputProgress.value = "0";
 
     updateProgressValue(inputProgress.value);
-    updateSelect();
+    updateSelect(assignedPerson);
 }
 
 function updateProgressValue(progress) {
@@ -58,23 +48,6 @@ function updateProgressValue(progress) {
     }
 }
 
-interface Person {
-    username: string;
-    firstName: string;
-    lastName: string;
-    role: number;
-}
-interface ToDoItem {
-    id: number;
-    date: string;
-    startTime: string;
-    endTime: string;
-    text: string;
-    progress: number;
-    assignedToUsername: string;
-    createdByUsername: string;
-}
-
 function getCurrentDate() {
     const urlParams = new URLSearchParams(window.location.search);
     var year = urlParams.get('year');
@@ -86,20 +59,6 @@ function getCurrentDate() {
         month = (currentDate.getMonth() + 1).toString();
     }
     return new Date(Number(year), Number(month) - 1, 1);
-}
-
-function getData(url: string): any {
-    return fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => data)
-        .catch(error => {
-            console.error('Fetch error:', error);
-        });
 }
 
 function postTask(inputs) {
@@ -121,14 +80,7 @@ function postTask(inputs) {
         item.assignedToUsername = null;
     }
 
-    fetch("/todoitems", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(item)
-    })
-    .then(response => {
+    postData("/todoitems", item).then(response => {
         if (!response.ok) {
             console.error("Failed to save data.");
         }
@@ -136,9 +88,6 @@ function postTask(inputs) {
             clearEditor();
             loadToDoItems(getCurrentDate())
         }
-    })
-    .catch(function (error) {
-        console.error("Error:", error);
     });
 }
 
