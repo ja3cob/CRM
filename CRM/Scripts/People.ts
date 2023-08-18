@@ -108,6 +108,18 @@ function showPersonEditor(person: Person) {
 function hidePersonEditor() {
     document.querySelector(".person-editor-container").classList.add("hidden");
 }
+function updatePersonData(username: string, person: Person) {
+    const rows = document.querySelectorAll(".people-row");
+    rows.forEach(row => {
+        if (row.querySelector(".row-username").innerHTML == username) {
+            row.querySelector(".row-username").innerHTML = person.username;
+            row.querySelector(".row-firstName").innerHTML = person.firstName;
+            row.querySelector(".row-lastName").innerHTML = person.lastName;
+            row.querySelector(".row-role").innerHTML = person.role.toString();
+        }
+    })
+}
+
 function editPerson(username: string) {
     const inputs = getPersonInputs();
     const person: Person = {
