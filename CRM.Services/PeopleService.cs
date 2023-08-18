@@ -44,7 +44,10 @@ namespace CRM.Services
                 throw new RequestException("Username cannot be empty", HttpStatusCode.BadRequest);
             }
 
-            person.Password ??= oldPerson.Password;
+            if (person.Password == null || string.IsNullOrWhiteSpace(person.Password))
+            {
+                person.Password = oldPerson.Password;
+            }
 
             _dbContext.Entry(oldPerson).CurrentValues.SetValues(person);
             _dbContext.SaveChanges();
