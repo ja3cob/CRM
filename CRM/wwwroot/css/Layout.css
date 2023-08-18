@@ -18,8 +18,10 @@
 }
 
 .navbar-menu {
-    margin: 0 auto;
     font-size: 1.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .navbar-links {
