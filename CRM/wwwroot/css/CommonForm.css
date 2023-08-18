@@ -6,6 +6,11 @@
 }
 .input-wrapper > *, .time-range > input {
     border-radius: 15px;
+    border: 2px solid var(--color-accent);
+    outline: none;
+}
+.input-wrapper > *:focus, .time-range > input:focus {
+    border: 2px solid var(--color-primary);
 }
 .input-wrapper * {
     font-size: 2rem;

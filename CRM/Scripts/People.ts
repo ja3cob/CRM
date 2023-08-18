@@ -31,6 +31,7 @@ function loadUsers() {
             editButton.classList.add("btn-edit");
             editButton.classList.add("btn");
             editButton.classList.add("btn--outline");
+                editButton.setAttribute("onclick", "showEditor()");
             editButton.innerHTML = "Edytuj";
             buttons.appendChild(editButton);
 
