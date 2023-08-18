@@ -203,7 +203,7 @@ function generatePercentageCircle(progress: number, small: boolean): Element {
     return circleDiv;
 }
 
-function loadPeople() {
+function loadAssignedTo() {
     const apiUrl = '/people';
 
     const dropDown = document.querySelector('.select-assigned-person');
