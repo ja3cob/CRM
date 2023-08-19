@@ -48,7 +48,7 @@ namespace CRM.Services
             {
                 person.Password = oldPerson.Password;
             }
-
+            person.Id = oldPerson.Id;
             _dbContext.Entry(oldPerson).CurrentValues.SetValues(person);
             _dbContext.SaveChanges();
         }
