@@ -132,9 +132,11 @@ function updatePersonData(username: string, person: Person) {
     rows.forEach(row => {
         if (row.querySelector(".row-username").innerHTML == username) {
             row.querySelector(".row-username").innerHTML = person.username;
-            row.querySelector(".row-firstName").innerHTML = person.firstName;
-            row.querySelector(".row-lastName").innerHTML = person.lastName;
+            row.querySelector(".row-firstname").innerHTML = person.firstName;
+            row.querySelector(".row-lastname").innerHTML = person.lastName;
             row.querySelector(".row-role").innerHTML = person.role.toString();
+            row.querySelector(".btn-edit").setAttribute("onclick", `showPersonEditor(${JSON.stringify(person)})`);
+            row.querySelector(".btn-delete").setAttribute("onlick", `deletePerson('${person.username}')`);
         }
     })
 }
