@@ -37,6 +37,7 @@
     deleteButton.classList.add("btn-delete");
     deleteButton.classList.add("btn");
     deleteButton.classList.add("btn--primary");
+    deleteButton.setAttribute("onclick", `deletePerson('${person.username}')`);
     deleteButton.innerHTML = "Usuń";
     buttons.appendChild(deleteButton);
 
