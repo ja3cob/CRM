@@ -47,7 +47,7 @@ namespace CRM.Database.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("People");
+                    b.ToTable("People", (string)null);
                 });
 
             modelBuilder.Entity("CRM.Models.ToDoItem", b =>
@@ -78,16 +78,13 @@ namespace CRM.Database.Migrations
                     b.Property<string>("Text")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("cipa")
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AssignedToId");
 
                     b.HasIndex("CreatedById");
 
-                    b.ToTable("ToDoItems");
+                    b.ToTable("ToDoItems", (string)null);
                 });
 
             modelBuilder.Entity("CRM.Models.ToDoItem", b =>
