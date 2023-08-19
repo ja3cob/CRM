@@ -1,4 +1,4 @@
-function clearEditor() {
+﻿function clearEditor() {
     document.querySelector(".task-editor-title").innerHTML = "Stwórz zadanie";
 
     const inputs = document.querySelectorAll(".task-editor-form input, .input-text");
@@ -70,7 +70,7 @@ function postTask(inputs) {
         text: inputs.text.value,
         progress: inputs.progress.value,
         assignedToUsername: inputs.assignedTo.value,
-        createdByUsername: null
+        createdByUsername: "test"
     }
 
     if (item.id.toString().length < 1 || isNaN(Number(item.id))) {
