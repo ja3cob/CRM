@@ -34,15 +34,7 @@ namespace CRM.Controllers.Api
         [HttpPost]
         public ActionResult Save([FromBody] ToDoItem item)
         {
-            try
-            {
-                _toDoItemsService.Save(item);
-            }
-            catch(Exception)
-            {
-                return BadRequest();
-            }
-
+            _toDoItemsService.Save(item);
             return Ok();
         }
     }
