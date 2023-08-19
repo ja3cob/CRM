@@ -70,6 +70,7 @@ function populatePersonEditor(person: Person) {
     inputs.firstName.value = person.firstName;
     inputs.lastName.value = person.lastName;
     inputs.role.value = person.role.toString();
+    inputs.password.value = person.password == undefined ? "" : person.password;
 
     updateSelect(inputs.role);
 }
