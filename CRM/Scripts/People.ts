@@ -122,6 +122,7 @@ function addPerson() {
     };
 
     postData("/people", person).then(response => {
+        person.password = null;
         if (response.ok) {
             addPersonToList(person);
             hidePersonEditor();
@@ -154,6 +155,7 @@ function editPerson(username: string) {
     };
 
     postData(`/people/${username}`, person).then(response => {
+        person.password = null;
         if (response.ok) {
             updatePersonData(username, person);
             hidePersonEditor();
