@@ -159,7 +159,7 @@ function generateToDoItemDetails(toDoItem: ToDoItem): Element {
 
     const assignedTo = document.createElement("p");
     assignedTo.classList.add("todoitems-item-details-assignedto");
-    assignedTo.innerHTML = "Przydzielony: ";
+    assignedTo.innerHTML = "<b>Przydzielony: </b><br>";
     if (toDoItem.assignedToId == null) {
         assignedTo.innerHTML += "brak";
     } else {
@@ -170,8 +170,8 @@ function generateToDoItemDetails(toDoItem: ToDoItem): Element {
 
     const createdBy = document.createElement("p");
     createdBy.classList.add("todoitems-item-details-createdby");
-    createdBy.innerHTML = "Utworzył: " + toDoItem.createdByUsername;
-    getPerson(toDoItem.assignedToId)
+    createdBy.innerHTML = "<b>Utworzył: </b><br>";
+    getPerson(toDoItem.createdById)
         .then((person: Person) => createdBy.innerHTML += person.username);
     detailsDiv.appendChild(createdBy);
 
