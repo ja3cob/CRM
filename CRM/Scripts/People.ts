@@ -50,7 +50,7 @@ function addPersonToList(person: Person) {
     deleteButton.classList.add("btn-delete");
     deleteButton.classList.add("btn");
     deleteButton.classList.add("btn--primary");
-    deleteButton.setAttribute("onclick", `deletePerson('${person.username}')`);
+    deleteButton.setAttribute("onclick", `deletePerson(${person.id})`);
     deleteButton.innerHTML = "Usuń";
     buttons.appendChild(deleteButton);
 
@@ -166,8 +166,6 @@ function updatePersonData(id: number, person: Person) {
             row.querySelector(".row-firstname").innerHTML = person.firstName;
             row.querySelector(".row-lastname").innerHTML = person.lastName;
             row.querySelector(".row-role").innerHTML = convertRole(person.role);
-            row.querySelector(".btn-edit").setAttribute("onclick", `showPersonEditor(${person.id})`);
-            row.querySelector(".btn-delete").setAttribute("onlick", `deletePerson('${person.username}')`);
         }
     })
 }
