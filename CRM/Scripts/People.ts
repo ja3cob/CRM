@@ -64,7 +64,7 @@ function loadUsers() {
     getData("/people")
         .then((people: Person[]) => people.forEach(person => {
             addPersonToList(person);
-    }));
+        }));
 }
 
 function getPersonInputs() {
@@ -99,25 +99,33 @@ function resetPersonEditor() {
     updateSelect(inputs.role);
 }
 
-function showPersonEditor(person: Person) {
+function personEditorModeAdd() {
+    document.querySelector(".btn-save").setAttribute("onclick", "addPerson()");
+
+    const title = document.querySelector(".person-editor-title");
+    title.innerHTML = title.innerHTML.replace("Edytuj", "Dodaj");
+
+    resetPersonEditor();
+}
+
 function showPersonEditor(id: number) {
     if (id != undefined) {
         getPerson(id).then(person => {
-    if (person != undefined && person.username.length > 0) {
+            if (person != undefined && person.username.length > 0) {
                 document.querySelector(".btn-save").setAttribute("onclick", `editPerson(${person.id})`);
 
-        const title = document.querySelector(".person-editor-title");
-        title.innerHTML = title.innerHTML.replace("Dodaj", "Edytuj");
+                const title = document.querySelector(".person-editor-title");
+                title.innerHTML = title.innerHTML.replace("Dodaj", "Edytuj");
 
-        populatePersonEditor(person);
+                populatePersonEditor(person);
+            }
+            else {
+                personEditorModeAdd();
+            }
+        });
     }
     else {
-        document.querySelector(".btn-save").setAttribute("onclick", "addPerson()");
-
-        const title = document.querySelector(".person-editor-title");
-        title.innerHTML = title.innerHTML.replace("Edytuj", "Dodaj");
-
-        resetPersonEditor();
+        personEditorModeAdd();
     }
 
     const editor = document.querySelector(".person-editor-container");
