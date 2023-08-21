@@ -70,8 +70,15 @@
     background-color: #d11a2a;
 }
 
-.hidden {
-    display: none;
+.person-editor-container {
+    transition: visibility 0.3s ease-in, opacity 0.3s ease-in;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.shown {
+    visibility: visible;
+    opacity: 1;
 }
 
 .person-editor-mask {

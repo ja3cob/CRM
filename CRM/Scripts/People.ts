@@ -104,11 +104,13 @@ function showPersonEditor(person: Person) {
         resetPersonEditor();
     }
 
-    document.querySelector(".person-editor-container").classList.remove("hidden");
+    const editor = document.querySelector(".person-editor-container");
+    editor.classList.add("shown");
 }
 
 function hidePersonEditor() {
-    document.querySelector(".person-editor-container").classList.add("hidden");
+    const editor = document.querySelector(".person-editor-container");
+    editor.classList.remove("shown");
 }
 
 function addPerson() {
