@@ -46,6 +46,10 @@
     color: var(--color-primary);
 }
 
+.row-id {
+    display: none;
+}
+
 .row-username {
     width: 19%;
 }

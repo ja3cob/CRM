@@ -1,4 +1,5 @@
 ﻿interface Person {
+    id: number,
     username: string;
     firstName: string;
     lastName: string;
@@ -12,8 +13,8 @@ interface ToDoItem {
     endTime: string;
     text: string;
     progress: number;
-    assignedToUsername: string;
-    createdByUsername: string;
+    assignedToId: number;
+    createdById: number;
 }
 interface Date {
     addDays(days: number): void;

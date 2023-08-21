@@ -118,8 +118,8 @@
         function populateEditor(item) {
             document.querySelector(".task-editor-title").innerHTML = "Edytuj zadanie";
 
-            if(item.assignedToUsername == undefined) {
-                item.assignedToUsername = "default";
+            if(isNaN(item.assignedToId) || item.assignedToId == undefined) {
+                item.assignedToId = "default";
             }
 
             const inputs = getInputs();
@@ -128,7 +128,7 @@
             inputs.startTime.value = item.startTime;
             inputs.endTime.value = item.endTime;
             inputs.text.value = item.text;
-            inputs.assignedTo.value = item.assignedToUsername;
+            inputs.assignedTo.value = item.assignedToId;
             inputs.progress.value = item.progress;
 
             updateProgressValue(item.progress);

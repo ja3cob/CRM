@@ -28,10 +28,10 @@ public class PeopleController : Controller
     }
 
     [HttpPost]
-    [Route("{username}")]
-    public IActionResult EditPerson(string username, Person person)
+    [Route("{id}")]
+    public IActionResult EditPerson(int id, Person person)
     {
-        _peopleService.Update(username, person);
+        _peopleService.Update(id, person);
         return Ok();
     }
 }

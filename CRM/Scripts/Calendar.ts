@@ -69,15 +69,15 @@ function postTask(inputs) {
         endTime: inputs.endTime.value,
         text: inputs.text.value,
         progress: inputs.progress.value,
-        assignedToUsername: inputs.assignedTo.value,
-        createdByUsername: "test"
+        assignedToId: Number(inputs.assignedTo.value),
+        createdById: 1
     }
 
     if (item.id.toString().length < 1 || isNaN(Number(item.id))) {
         item.id = null;
     }
-    if (item.assignedToUsername.length < 1 || item.assignedToUsername == "default") {
-        item.assignedToUsername = null;
+    if (isNaN(item.assignedToId)) {
+        item.assignedToId = null;
     }
 
     postData("/todoitems", item).then(response => {
@@ -160,7 +160,7 @@ function generateToDoItemDetails(toDoItem: ToDoItem): Element {
     const assignedTo = document.createElement("p");
     assignedTo.classList.add("todoitems-item-details-assignedto");
     assignedTo.innerHTML = "Przydzielony: ";
-    if (toDoItem.assignedToUsername == null) {
+    if (toDoItem.assignedToId == null) {
         assignedTo.innerHTML += "brak";
     } else {
         assignedTo.innerHTML += toDoItem.assignedToUsername;
@@ -210,7 +210,7 @@ function loadAssignedTo() {
     getData(apiUrl).then(people => {
         people.forEach((person: Person) => {
             const option = document.createElement('option');
-            option.setAttribute('value', person.username);
+            option.setAttribute('value', person.id.toString());
             option.innerHTML = person.username;
             dropDown.appendChild(option);
         });

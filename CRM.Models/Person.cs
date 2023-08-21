@@ -4,7 +4,6 @@ namespace CRM.Models
 {
     public class Person
     {
-        [JsonIgnore]
         public int? Id { get; set; }
         public string Username { get; set; } = null!;
         [JsonIgnore]

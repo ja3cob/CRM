@@ -15,6 +15,10 @@ namespace CRM.Services
             _dbContext = dbContext;
         }
 
+        public Person? Get(int id)
+        {
+            return _dbContext.People.FirstOrDefault(x => x.Id == id);
+        }
         public Person? Get(string username)
         {
             return _dbContext.People.FirstOrDefault(x => x.Username == username);
@@ -32,9 +36,9 @@ namespace CRM.Services
             _dbContext.People.Add(person);
             _dbContext.SaveChanges();
         }
-        public void Update(string username, Person person)
+        public void Update(int id, Person person)
         {
-            var oldPerson = Get(username);
+            var oldPerson = Get(id);
             if (oldPerson == null)
             {
                 throw new RequestException("User does not exist", HttpStatusCode.BadRequest);

@@ -10,6 +10,11 @@ function addPersonToList(person: Person) {
     const row = document.createElement("div");
     row.classList.add("people-row");
 
+    const id = document.createElement("div");
+    id.classList.add("row-id");
+    id.innerHTML = person.id.toString();
+    row.appendChild(id);
+
     const username = document.createElement("div");
     username.classList.add("row-username");
     username.innerHTML = person.username;
@@ -37,7 +42,7 @@ function addPersonToList(person: Person) {
     editButton.classList.add("btn-edit");
     editButton.classList.add("btn");
     editButton.classList.add("btn--outline");
-    editButton.setAttribute("onclick", `showPersonEditor(${JSON.stringify(person)})`);
+    editButton.setAttribute("onclick", `showPersonEditor(${person.id})`);
     editButton.innerHTML = "Edytuj";
     buttons.appendChild(editButton);
 
@@ -95,8 +100,11 @@ function resetPersonEditor() {
 }
 
 function showPersonEditor(person: Person) {
+function showPersonEditor(id: number) {
+    if (id != undefined) {
+        getPerson(id).then(person => {
     if (person != undefined && person.username.length > 0) {
-        document.querySelector(".btn-save").setAttribute("onclick", `editPerson('${person.username}')`);
+                document.querySelector(".btn-save").setAttribute("onclick", `editPerson(${person.id})`);
 
         const title = document.querySelector(".person-editor-title");
         title.innerHTML = title.innerHTML.replace("Dodaj", "Edytuj");
@@ -124,6 +132,7 @@ function hidePersonEditor() {
 function addPerson() {
     const inputs = getPersonInputs();
     const person: Person = {
+        id: null,
         username: inputs.username.value,
         firstName: inputs.firstName.value,
         lastName: inputs.lastName.value,
@@ -140,23 +149,25 @@ function addPerson() {
     });
 }
 
-function updatePersonData(username: string, person: Person) {
+function updatePersonData(id: number, person: Person) {
     const rows = document.querySelectorAll(".people-row");
     rows.forEach(row => {
-        if (row.querySelector(".row-username").innerHTML == username) {
+        const idSpan = row.querySelector(".row-id");
+        if (idSpan != undefined && idSpan.innerHTML == id.toString()) {
             row.querySelector(".row-username").innerHTML = person.username;
             row.querySelector(".row-firstname").innerHTML = person.firstName;
             row.querySelector(".row-lastname").innerHTML = person.lastName;
             row.querySelector(".row-role").innerHTML = convertRole(person.role);
-            row.querySelector(".btn-edit").setAttribute("onclick", `showPersonEditor(${JSON.stringify(person)})`);
+            row.querySelector(".btn-edit").setAttribute("onclick", `showPersonEditor(${person.id})`);
             row.querySelector(".btn-delete").setAttribute("onlick", `deletePerson('${person.username}')`);
         }
     })
 }
 
-function editPerson(username: string) {
+function editPerson(id: number) {
     const inputs = getPersonInputs();
     const person: Person = {
+        id: id,
         username: inputs.username.value,
         firstName: inputs.firstName.value,
         lastName: inputs.lastName.value,
@@ -164,10 +175,10 @@ function editPerson(username: string) {
         password: inputs.password.value
     };
 
-    postData(`/people/${username}`, person).then(response => {
+    postData(`/people/${id}`, person).then(response => {
         person.password = null;
         if (response.ok) {
-            updatePersonData(username, person);
+            updatePersonData(id, person);
             hidePersonEditor();
         }
     });
