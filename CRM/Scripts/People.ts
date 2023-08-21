@@ -1,4 +1,12 @@
-﻿function addPersonToList(person: Person) {
+﻿function convertRole(role: number) {
+    if (role == 0) {
+        return "Admin";
+    }
+    else if (role == 1) {
+        return "User";
+    }
+} 
+function addPersonToList(person: Person) {
     const row = document.createElement("div");
     row.classList.add("people-row");
 
@@ -19,7 +27,7 @@
 
     const role = document.createElement("div");
     role.classList.add("row-role");
-    role.innerHTML = person.role.toString();
+    role.innerHTML = convertRole(person.role);
     row.appendChild(role);
 
     const buttons = document.createElement("div");
@@ -139,7 +147,7 @@ function updatePersonData(username: string, person: Person) {
             row.querySelector(".row-username").innerHTML = person.username;
             row.querySelector(".row-firstname").innerHTML = person.firstName;
             row.querySelector(".row-lastname").innerHTML = person.lastName;
-            row.querySelector(".row-role").innerHTML = person.role.toString();
+            row.querySelector(".row-role").innerHTML = convertRole(person.role);
             row.querySelector(".btn-edit").setAttribute("onclick", `showPersonEditor(${JSON.stringify(person)})`);
             row.querySelector(".btn-delete").setAttribute("onlick", `deletePerson('${person.username}')`);
         }
