@@ -27,6 +27,12 @@ public class PeopleController : Controller
         return Ok();
     }
 
+    [HttpGet]
+    [Route("{id}")]
+    public IActionResult GetPerson(int id)
+    {
+        return Ok(_peopleService.Get(id));
+    }
     [HttpPost]
     [Route("{id}")]
     public IActionResult EditPerson(int id, Person person)

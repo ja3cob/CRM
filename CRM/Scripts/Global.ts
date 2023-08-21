@@ -74,3 +74,7 @@ function postData(url: string, body: Object): any {
             console.error("Error:", error);
         });
 }
+
+function getPerson(id: number) {
+    return getData(`/people/${id}`);
+}

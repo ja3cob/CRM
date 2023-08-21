@@ -163,13 +163,16 @@ function generateToDoItemDetails(toDoItem: ToDoItem): Element {
     if (toDoItem.assignedToId == null) {
         assignedTo.innerHTML += "brak";
     } else {
-        assignedTo.innerHTML += toDoItem.assignedToUsername;
+        getPerson(toDoItem.assignedToId)
+            .then((person: Person) => assignedTo.innerHTML += person.username);
     }
     detailsDiv.appendChild(assignedTo);
 
     const createdBy = document.createElement("p");
     createdBy.classList.add("todoitems-item-details-createdby");
     createdBy.innerHTML = "Utworzył: " + toDoItem.createdByUsername;
+    getPerson(toDoItem.assignedToId)
+        .then((person: Person) => createdBy.innerHTML += person.username);
     detailsDiv.appendChild(createdBy);
 
     return detailsDiv;
