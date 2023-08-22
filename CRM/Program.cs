@@ -61,13 +61,13 @@ namespace CRM
         private static void ConfigureRoutes(this WebApplication app)
         {
             app.MapControllerRoute(
-                name: "calendar",
-                pattern: "/calendar",
-                defaults: new { controller = "Home", action = "Index" });
+                name: "todoitems",
+                pattern: "/todoitems",
+                defaults: new { controller = "Home", action = "ToDoItems" });
             app.MapControllerRoute(
                 name: "default",
                 pattern: "/",
-                defaults: new { controller = "Home", action = "Index" });
+                defaults: new { controller = "Home", action = "ToDoItems" });
         }
 
         public static async Task Main(string[] args)
