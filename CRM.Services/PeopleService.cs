@@ -30,22 +30,22 @@ namespace CRM.Services
         {
             if (Get(person.Username) != null)
             {
-                throw new RequestException("Username already exists", HttpStatusCode.BadRequest);
+                throw new ApiException("Username already exists", HttpStatusCode.BadRequest);
             }
             _dbContext.People.Add(person);
             _dbContext.SaveChanges();
-            return person.Id ?? throw new RequestException("An error occured while adding person", HttpStatusCode.InternalServerError);
+            return person.Id ?? throw new ApiException("An error occured while adding person", HttpStatusCode.InternalServerError);
         }
         public void Update(int id, Person person)
         {
             var oldPerson = Get(id);
             if (oldPerson == null)
             {
-                throw new RequestException("User does not exist", HttpStatusCode.BadRequest);
+                throw new ApiException("User does not exist", HttpStatusCode.BadRequest);
             }
             if (string.IsNullOrWhiteSpace(person.Username))
             {
-                throw new RequestException("Username cannot be empty", HttpStatusCode.BadRequest);
+                throw new ApiException("Username cannot be empty", HttpStatusCode.BadRequest);
             }
 
             if (person.Password == null || string.IsNullOrWhiteSpace(person.Password))
@@ -60,12 +60,12 @@ namespace CRM.Services
         {
             if (_dbContext.ToDoItems.Any(x => x.CreatedById == id))
             {
-                throw new RequestException("Cannot delete - there are tasks created by this person", HttpStatusCode.BadRequest);
+                throw new ApiException("Cannot delete - there are tasks created by this person", HttpStatusCode.BadRequest);
             }
             var person = Get(id);
             if (person == null)
             {
-                throw new RequestException("Person with such id does not exist", HttpStatusCode.BadRequest);
+                throw new ApiException("Person with such id does not exist", HttpStatusCode.BadRequest);
             }
 
             foreach (var toDoItem in _dbContext.ToDoItems.Where(x => x.AssignedToId == id))

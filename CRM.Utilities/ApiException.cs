@@ -2,10 +2,10 @@
 
 namespace CRM.Utilities;
 
-public class RequestException : Exception
+public class ApiException : Exception
 {
     public HttpStatusCode StatusCode { get; }
-    public RequestException(string message, HttpStatusCode statusCode) : base(message)
+    public ApiException(string message, HttpStatusCode statusCode) : base(message)
     {
         StatusCode = statusCode;
     }

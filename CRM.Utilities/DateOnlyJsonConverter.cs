@@ -8,7 +8,7 @@ public sealed class DateOnlyJsonConverter : JsonConverter<DateOnly>
     {
         if(!reader.TryGetDateTime(out var dateTime))
         {
-            throw new RequestException("Date was in an incorrect format", System.Net.HttpStatusCode.BadRequest);
+            throw new ApiException("Date was in an incorrect format", System.Net.HttpStatusCode.BadRequest);
         }
         return DateOnly.FromDateTime(dateTime);
     }

@@ -9,7 +9,7 @@ public sealed class TimeOnlyJsonConverter : JsonConverter<TimeOnly>
         var timeString = reader.GetString();
         if(timeString == null || !DateTime.TryParse(timeString, out var timeOnly))
         {
-            throw new RequestException("Time was in an incorrect format", System.Net.HttpStatusCode.BadRequest);
+            throw new ApiException("Time was in an incorrect format", System.Net.HttpStatusCode.BadRequest);
         }
         return TimeOnly.FromDateTime(timeOnly);
     }
