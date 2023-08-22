@@ -3,11 +3,10 @@
 using CRM.Database;
 using CRM.Models;
 using CRM.Utilities;
-using Microsoft.EntityFrameworkCore;
 
 namespace CRM.Services
 {
-    public class PeopleService 
+    public class PeopleService
     {
         private readonly CRMDbContext _dbContext;
         public PeopleService(CRMDbContext dbContext)
@@ -23,13 +22,13 @@ namespace CRM.Services
         {
             return _dbContext.People.FirstOrDefault(x => x.Username == username);
         }
-        public IEnumerable<Person> GetList() 
+        public IEnumerable<Person> GetList()
         {
             return _dbContext.People;
         }
         public void Add(Person person)
         {
-            if(Get(person.Username) != null)
+            if (Get(person.Username) != null)
             {
                 throw new RequestException("Username already exists", HttpStatusCode.BadRequest);
             }
@@ -56,10 +55,24 @@ namespace CRM.Services
             _dbContext.Entry(oldPerson).CurrentValues.SetValues(person);
             _dbContext.SaveChanges();
         }
-        public void Delete(string username)
+        public void Delete(int id)
         {
-            _dbContext.People.Where(x => x.Username == username).ExecuteDelete();
+            if (_dbContext.ToDoItems.Any(x => x.CreatedById == id))
+            {
+                throw new RequestException("Cannot delete - there are tasks created by this person", HttpStatusCode.BadRequest);
+            }
+            var person = Get(id);
+            if (person == null)
+            {
+                throw new RequestException("Person with such id does not exist", HttpStatusCode.BadRequest);
+            }
+
+            foreach (var toDoItem in _dbContext.ToDoItems.Where(x => x.AssignedToId == id))
+            {
+                toDoItem.AssignedToId = null;
+            }
+            _dbContext.People.Remove(person);
+            _dbContext.SaveChanges();
         }
     }
 }
-
