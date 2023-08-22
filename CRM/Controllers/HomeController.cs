@@ -9,7 +9,7 @@ namespace CRM.Controllers
         public HomeController() { }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult ToDoItems()
         {
             return View();
         }
