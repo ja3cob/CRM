@@ -9,11 +9,7 @@
 function addPersonRow(person: Person) {
     const row = document.createElement("div");
     row.classList.add("people-row");
-
-    const id = document.createElement("div");
-    id.classList.add("row-id");
-    id.innerHTML = person.id.toString();
-    row.appendChild(id);
+    row.id = "person-" + person.id.toString();
 
     const username = document.createElement("div");
     username.classList.add("row-username");
@@ -158,16 +154,13 @@ function addPerson() {
 }
 
 function updatePersonRow(id: number, person: Person) {
-    const rows = document.querySelectorAll(".people-row");
-    rows.forEach(row => {
-        const idSpan = row.querySelector(".row-id");
-        if (idSpan != undefined && idSpan.innerHTML == id.toString()) {
+    const row = document.getElementById("person-" + id);
+    if (row != undefined) {
             row.querySelector(".row-username").innerHTML = person.username;
             row.querySelector(".row-firstname").innerHTML = person.firstName;
             row.querySelector(".row-lastname").innerHTML = person.lastName;
             row.querySelector(".row-role").innerHTML = convertRole(person.role);
         }
-    })
 }
 
 function editPerson(id: number) {
