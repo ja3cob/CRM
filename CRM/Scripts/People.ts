@@ -156,11 +156,11 @@ function addPerson() {
 function updatePersonRow(id: number, person: Person) {
     const row = document.getElementById("person-" + id);
     if (row != undefined) {
-            row.querySelector(".row-username").innerHTML = person.username;
-            row.querySelector(".row-firstname").innerHTML = person.firstName;
-            row.querySelector(".row-lastname").innerHTML = person.lastName;
-            row.querySelector(".row-role").innerHTML = convertRole(person.role);
-        }
+        row.querySelector(".row-username").innerHTML = person.username;
+        row.querySelector(".row-firstname").innerHTML = person.firstName;
+        row.querySelector(".row-lastname").innerHTML = person.lastName;
+        row.querySelector(".row-role").innerHTML = convertRole(person.role);
+    }
 }
 
 function editPerson(id: number) {
@@ -181,4 +181,17 @@ function editPerson(id: number) {
             hidePersonEditor();
         }
     });
+}
+
+function deletePersonRow(id: number) {
+    const row = document.getElementById("person-" + id);
+    row.remove();
+}
+
+function deletePerson(id: number) {
+    deleteData(`/people/${id}`).then(response => {
+        if (response.ok) {
+            deletePersonRow(id);
+        }
+    })
 }
