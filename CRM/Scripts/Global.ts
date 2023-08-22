@@ -68,7 +68,17 @@ function postData(url: string, body: Object): any {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(body)
-    })
+        })
+        .then(response => response)
+        .catch(function (error) {
+            console.error("Error:", error);
+        });
+}
+
+function deleteData(url: string): any {
+    return fetch(url, {
+        method: "DELETE"
+        })
         .then(response => response)
         .catch(function (error) {
             console.error("Error:", error);
