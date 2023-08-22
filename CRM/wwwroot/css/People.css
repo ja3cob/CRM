@@ -75,7 +75,7 @@
 }
 
 .dialog-container {
-    transition: visibility 0.3s ease-in, opacity 0.3s ease-in;
+    transition: visibility 0.2s ease-in, opacity 0.2s ease-in;
     visibility: hidden;
     opacity: 0;
 }
