@@ -100,7 +100,7 @@
             const currentDate = getCurrentDate();
             currentDate.setMonth(currentDate.getMonth() + Number(change));
 
-            history.pushState(currentDate, "", `/calendar?year=${currentDate.getFullYear()}&month=${currentDate.getMonth() + 1}`);
+            history.pushState(currentDate, "", `/todoitems?year=${currentDate.getFullYear()}&month=${currentDate.getMonth() + 1}`);
             loadCalendar();
         }
 
