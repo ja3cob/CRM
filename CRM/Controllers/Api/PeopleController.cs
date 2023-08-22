@@ -29,9 +29,14 @@ public class PeopleController : Controller
 
     [HttpGet]
     [Route("{id}")]
-    public IActionResult GetPerson(int id)
+    public ActionResult<Person> GetPerson(int id)
     {
-        return Ok(_peopleService.Get(id));
+        var person = _peopleService.Get(id);
+        if(person == null)
+        {
+            return NotFound();
+    }
+        return Ok(person);
     }
     [HttpPost]
     [Route("{id}")]
