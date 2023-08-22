@@ -1,5 +1,5 @@
 ﻿using CRM.Models;
-using CRM.Utilities;
+using CRM.Utilities.Converters;
 using Microsoft.EntityFrameworkCore;
 
 namespace CRM.Database;

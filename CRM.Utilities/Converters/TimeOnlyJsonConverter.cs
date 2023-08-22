@@ -1,13 +1,13 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.Json;
 
-namespace CRM.Utilities;
+namespace CRM.Utilities.Converters;
 public sealed class TimeOnlyJsonConverter : JsonConverter<TimeOnly>
 {
     public override TimeOnly Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var timeString = reader.GetString();
-        if(timeString == null || !DateTime.TryParse(timeString, out var timeOnly))
+        if (timeString == null || !DateTime.TryParse(timeString, out var timeOnly))
         {
             throw new ApiException("Time was in an incorrect format", System.Net.HttpStatusCode.BadRequest);
         }

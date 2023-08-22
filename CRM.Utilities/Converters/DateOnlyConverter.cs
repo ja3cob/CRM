@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CRM.Utilities;
+namespace CRM.Utilities.Converters;
 
 public class DateOnlyConverter : ValueConverter<DateOnly, DateTime>
 {
