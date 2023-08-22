@@ -149,7 +149,10 @@ function addPerson() {
     postData("/people", person).then(response => {
         person.password = null;
         if (response.ok) {
+            response.json().then(id => {
+                person.id = id;
             addPersonRow(person);
+            });
             hidePersonEditor();
         }
     });

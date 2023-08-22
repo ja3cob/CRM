@@ -21,10 +21,10 @@ public class PeopleController : Controller
     }
 
     [HttpPost]
-    public IActionResult AddPerson([FromBody] Person person)
+    public ActionResult<int> AddPerson([FromBody] Person person)
     {
-        _peopleService.Add(person);
-        return Ok();
+        var id = _peopleService.Add(person);
+        return Ok(id);
     }
 
     [HttpGet]

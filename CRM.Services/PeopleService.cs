@@ -26,7 +26,7 @@ namespace CRM.Services
         {
             return _dbContext.People;
         }
-        public void Add(Person person)
+        public int Add(Person person)
         {
             if (Get(person.Username) != null)
             {
@@ -34,6 +34,7 @@ namespace CRM.Services
             }
             _dbContext.People.Add(person);
             _dbContext.SaveChanges();
+            return person.Id ?? throw new RequestException("An error occured while adding person", HttpStatusCode.InternalServerError);
         }
         public void Update(int id, Person person)
         {
