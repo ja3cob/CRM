@@ -62,6 +62,20 @@
     </div>
 </div>
 
+<div class="dialog-container person-delete-container">
+    <div class="dialog-mask"></div>
+    <div class="dialog">
+        <div class="dialog-buttons">
+            <i class="fa fa-times" onclick="hideDeletePersonDialog()"></i>
+        </div>
+        <h1 class="dialog-title">Na pewno chcesz usunąć?</h1>
+        <div class="person-delete-buttons">
+            <button class="btn-no btn btn--outline" type="button">Nie</button>
+            <button class="btn-yes btn btn--primary" type="button">Tak</button>
+        </div>
+    </div>
+</div>
+
 @section Styles
 {
     <link rel="stylesheet" href="~/css/People.css" />

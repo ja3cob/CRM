@@ -144,3 +144,23 @@
     border-radius: 10px;
     margin-top: 10px;
 }
+
+.person-delete-container .dialog {
+   height: 220px;
+}
+
+.person-delete-buttons {
+    display: flex;
+    gap: 2rem;
+    margin: 30px;
+}
+
+.person-delete-buttons button {
+    flex: 1;
+    font-size: 1.5rem;
+    border-radius: 10px;
+}
+
+.person-delete-buttons .btn-yes {
+    background-color: var(--color-danger);
+}

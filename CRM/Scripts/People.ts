@@ -46,7 +46,7 @@ function addPersonRow(person: Person) {
     deleteButton.classList.add("btn-delete");
     deleteButton.classList.add("btn");
     deleteButton.classList.add("btn--primary");
-    deleteButton.setAttribute("onclick", `deletePerson(${person.id})`);
+    deleteButton.setAttribute("onclick", `showDeletePersonDialog(${person.id})`);
     deleteButton.innerHTML = "Usuń";
     buttons.appendChild(deleteButton);
 
@@ -151,7 +151,7 @@ function addPerson() {
         if (response.ok) {
             response.json().then(id => {
                 person.id = id;
-            addPersonRow(person);
+                addPersonRow(person);
             });
             hidePersonEditor();
         }
@@ -188,6 +188,20 @@ function editPerson(id: number) {
     });
 }
 
+function showDeletePersonDialog(id: number) {
+    if (id != undefined) {
+        const deleteDialog = document.querySelector(".person-delete-container");
+        deleteDialog.querySelector(".btn-yes").setAttribute("onclick", `deletePerson(${id})`);
+        deleteDialog.querySelector(".btn-no").setAttribute("onclick", "hideDeletePersonDialog()");
+        deleteDialog.classList.add("shown");
+    }
+}
+
+function hideDeletePersonDialog() {
+    const deleteDialog = document.querySelector(".person-delete-container");
+    deleteDialog.classList.remove("shown");
+}
+
 function deletePersonRow(id: number) {
     const row = document.getElementById("person-" + id);
     row.remove();
@@ -197,6 +211,7 @@ function deletePerson(id: number) {
     deleteData(`/people/${id}`).then(response => {
         if (response.ok) {
             deletePersonRow(id);
+            hideDeletePersonDialog();
         }
     })
 }
