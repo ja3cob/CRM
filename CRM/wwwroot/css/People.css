@@ -71,7 +71,7 @@
 }
 
 .row-buttons .btn-delete {
-    background-color: #d11a2a;
+    background-color: var(--color-danger);
 }
 
 .person-editor-container {
