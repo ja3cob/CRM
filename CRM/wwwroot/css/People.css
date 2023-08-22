@@ -74,7 +74,7 @@
     background-color: var(--color-danger);
 }
 
-.person-editor-container {
+.dialog-container {
     transition: visibility 0.3s ease-in, opacity 0.3s ease-in;
     visibility: hidden;
     opacity: 0;
@@ -85,7 +85,7 @@
     opacity: 1;
 }
 
-.person-editor-mask {
+.dialog-mask {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -95,7 +95,7 @@
     background-color: black;
 }
 
-.person-editor {
+.dialog {
     position: fixed;
     top: 40%;
     left: 50%;
@@ -108,24 +108,24 @@
     padding: 15px;
 }
 
-.person-editor-buttons {
+.dialog-buttons {
     display: flex;
     justify-content: right;
 }
-.person-editor-buttons i {
+.dialog-buttons i {
     color: var(--color-secondary);
     font-size: 2.5rem;
     line-height: 2rem;
 }
 
-.person-editor-buttons i:hover {
+.dialog-buttons i:hover {
     cursor: pointer;
 }
 
-.person-editor-title {
+.dialog-title {
     text-align: center;
     color: var(--color-accent);
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .person-editor-form {

@@ -96,9 +96,10 @@ function resetPersonEditor() {
 }
 
 function personEditorModeAdd() {
-    document.querySelector(".btn-save").setAttribute("onclick", "addPerson()");
+    const editor = document.querySelector(".person-editor-container");
+    editor.querySelector(".btn-save").setAttribute("onclick", "addPerson()");
 
-    const title = document.querySelector(".person-editor-title");
+    const title = editor.querySelector(".dialog-title");
     title.innerHTML = title.innerHTML.replace("Edytuj", "Dodaj");
 
     resetPersonEditor();
@@ -108,9 +109,10 @@ function showPersonEditor(id: number) {
     if (id != undefined) {
         getPerson(id).then(person => {
             if (person != undefined && person.username.length > 0) {
-                document.querySelector(".btn-save").setAttribute("onclick", `editPerson(${person.id})`);
+                const editor = document.querySelector(".person-editor-container");
+                editor.querySelector(".btn-save").setAttribute("onclick", `editPerson(${person.id})`);
 
-                const title = document.querySelector(".person-editor-title");
+                const title = editor.querySelector(".dialog-title");
                 title.innerHTML = title.innerHTML.replace("Dodaj", "Edytuj");
 
                 populatePersonEditor(person);
