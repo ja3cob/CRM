@@ -6,7 +6,7 @@
         return "User";
     }
 } 
-function addPersonToList(person: Person) {
+function addPersonRow(person: Person) {
     const row = document.createElement("div");
     row.classList.add("people-row");
 
@@ -63,7 +63,7 @@ function addPersonToList(person: Person) {
 function loadUsers() {
     getData("/people")
         .then((people: Person[]) => people.forEach(person => {
-            addPersonToList(person);
+            addPersonRow(person);
         }));
 }
 
@@ -151,13 +151,13 @@ function addPerson() {
     postData("/people", person).then(response => {
         person.password = null;
         if (response.ok) {
-            addPersonToList(person);
+            addPersonRow(person);
             hidePersonEditor();
         }
     });
 }
 
-function updatePersonData(id: number, person: Person) {
+function updatePersonRow(id: number, person: Person) {
     const rows = document.querySelectorAll(".people-row");
     rows.forEach(row => {
         const idSpan = row.querySelector(".row-id");
@@ -184,7 +184,7 @@ function editPerson(id: number) {
     postData(`/people/${id}`, person).then(response => {
         person.password = null;
         if (response.ok) {
-            updatePersonData(id, person);
+            updatePersonRow(id, person);
             hidePersonEditor();
         }
     });
