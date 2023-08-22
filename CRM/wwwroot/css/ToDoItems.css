@@ -159,7 +159,7 @@ a {
     background-color: var(--color-primary);
     margin-bottom: 5px;
     border-radius: 9px;
-    padding: 3px;
+    padding: 5px;
     text-align: left;
     cursor: pointer;
 }
