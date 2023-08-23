@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - CRM</title>
     <link rel="stylesheet" href="~/css/Global.css"/>
     <link rel="stylesheet" href="~/css/Button.css"/>
+    <link rel="stylesheet" href="~/css/Navbar.css" />
     <link rel="stylesheet" href="~/css/Layout.css"/>
     @await RenderSectionAsync("Styles", required: false)
 </head>
@@ -20,7 +21,7 @@
             &copy; 2023 - CRM - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/js/Global.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
+<script src="~/js/Global.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </html>
