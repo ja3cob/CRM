@@ -8,6 +8,9 @@
     --color-text: #05070A;
     --color-accent: #4E648D;
     --color-danger: #D11A2A;
+
+    --navbar-height: 80px;
+    --footer-height: 80px;
 }
 
 :root {
