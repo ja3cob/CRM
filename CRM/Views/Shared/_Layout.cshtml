@@ -10,22 +10,7 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <nav class="navbar">
-        <a href="/">Witaj</a>
-        <div class="navbar-menu">
-            <ul class="navbar-links">
-                <li>
-                    <a href="/">Strona główna</a>
-                </li>
-                <li>
-                    <a href="/uzytkownicy">Użytkownicy</a>
-                </li>
-            </ul>
-        </div>
-        <div class="navbar-user">
-            <span>Test</span>
-        </div>
-    </nav>
+    <partial name="_NavbarPartial" />
     <div class="main-container">
         @RenderBody()
     </div>
