@@ -1,9 +1,11 @@
 using CRM.Database;
+using CRM.Models;
 using CRM.Services;
 using CRM.Utilities;
 using CRM.Utilities.Converters;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using System.Net;
 
 namespace CRM
 {
@@ -17,6 +19,17 @@ namespace CRM
                     options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
                     options.JsonSerializerOptions.Converters.Add(new TimeOnlyJsonConverter());
                 });
+            builder.Services.AddAuthentication(Cookies.Identity)
+                .AddCookie(Cookies.Identity, options =>
+                {
+                    options.Cookie.Name = Cookies.Identity;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                });
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy(Policies.MustBeAdmin, policy => policy.RequireRole(nameof(Role.Admin)));
+                options.AddPolicy(Policies.MustBeUser , policy => policy.RequireRole(nameof(Role.User)));
+            });
             builder.Services.AddScoped<ToDoItemsService>();
             builder.Services.AddScoped<PeopleService>();
         }
@@ -69,6 +82,7 @@ namespace CRM
                 name: "default",
                 pattern: "/",
                 defaults: new { controller = "Home", action = "ToDoItems" });
+            app.MapControllers().RequireAuthorization();
         }
 
         public static async Task Main(string[] args)
