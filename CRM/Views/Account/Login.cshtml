@@ -1,0 +1,25 @@
+﻿<div class="dialog login-dialog">
+    <h1 class="dialog-title">Logowanie</h1>
+    <form class="login-form" action="">
+        <p>Nazwa użytkownika</p>
+        <div class="input-wrapper">
+            <input class="input-text" name="username" type="text" />
+            <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <p>Hasło</p>
+        <div class="input-wrapper">
+            <input class="input-text" name="password" type="password" />
+            <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="dialog-buttons">
+            <button class="btn-login btn btn--primary" type="button" onclick="">Zaloguj</button>
+        </div>
+    </form>
+</div>
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/CommonDialog.css" />
+    <link rel="stylesheet" href="~/css/CommonForm.css" />
+    <link rel="stylesheet" href="~/css/Login.css" />
+}
