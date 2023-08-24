@@ -1,4 +1,5 @@
 ﻿using CRM.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,6 +13,14 @@ namespace CRM.Controllers
         public IActionResult ToDoItems()
         {
             return View();
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("/account/login")]
+        public IActionResult Login()
+        {
+            return View("/Views/Account/Login.cshtml");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
