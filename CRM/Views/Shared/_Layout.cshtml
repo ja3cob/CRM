@@ -11,7 +11,10 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <partial name="_NavbarPartial" />
+    @if (User.Identity?.IsAuthenticated ?? false)
+    {
+        <partial name="_NavbarPartial" />
+    }
     <div class="main-container">
         @RenderBody()
     </div>
