@@ -19,7 +19,10 @@ namespace CRM.Controllers
         [HttpGet]
         [Route("/account/login")]
         public IActionResult Login()
+            if(User.Identity?.IsAuthenticated ?? false)
         {
+                return Redirect("/");
+            }
             return View("/Views/Account/Login.cshtml");
         }
 
