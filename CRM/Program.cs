@@ -32,6 +32,7 @@ namespace CRM
             });
             builder.Services.AddScoped<ToDoItemsService>();
             builder.Services.AddScoped<PeopleService>();
+            builder.Services.AddSwaggerGen();
         }
 
         private static void ConfigureDatabase(this WebApplicationBuilder builder)
@@ -65,6 +66,11 @@ namespace CRM
                 app.UseExceptionHandler("/error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+            else
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
