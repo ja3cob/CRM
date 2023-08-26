@@ -1,11 +1,12 @@
 ﻿using CRM.Models;
 using CRM.Services;
+using CRM.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRM.Controllers.Api;
 
 [ApiController]
-[Route("[controller]")]
+[RouteApiController]
 public class PeopleController : Controller
 {
     private readonly PeopleService _peopleService;
