@@ -32,6 +32,7 @@ namespace CRM
             });
             builder.Services.AddScoped<ToDoItemsService>();
             builder.Services.AddScoped<PeopleService>();
+            builder.Services.AddScoped<AuthenticationService>();
             builder.Services.AddSwaggerGen();
         }
 
