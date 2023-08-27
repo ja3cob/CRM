@@ -32,6 +32,7 @@ namespace CRM.Services
             {
                 throw new ApiException("Username already exists", HttpStatusCode.BadRequest);
             }
+            person.Password = BCrypt.Net.BCrypt.HashPassword(person.Password);
             _dbContext.People.Add(person);
             _dbContext.SaveChanges();
             return person.Id ?? throw new ApiException("An error occured while adding person", HttpStatusCode.InternalServerError);
@@ -51,6 +52,10 @@ namespace CRM.Services
             if (person.Password == null || string.IsNullOrWhiteSpace(person.Password))
             {
                 person.Password = oldPerson.Password;
+            }
+            else
+            {
+                person.Password = BCrypt.Net.BCrypt.HashPassword(person.Password);
             }
             person.Id = oldPerson.Id;
             _dbContext.Entry(oldPerson).CurrentValues.SetValues(person);
