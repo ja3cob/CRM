@@ -86,5 +86,5 @@ function deleteData(url: string): any {
 }
 
 function getPerson(id: number) {
-    return getData(`/people/${id}`);
+    return getData(`${urls.apiPeople}/${id}`);
 }

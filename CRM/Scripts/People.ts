@@ -57,7 +57,7 @@ function addPersonRow(person: Person) {
 }
 
 function loadUsers() {
-    getData("/people")
+    getData(urls.apiPeople)
         .then((people: Person[]) => people.forEach(person => {
             addPersonRow(person);
         }));
@@ -146,7 +146,7 @@ function addPerson() {
         password: inputs.password.value
     };
 
-    postData("/people", person).then(response => {
+    postData(urls.apiPeople, person).then(response => {
         person.password = null;
         if (response.ok) {
             response.json().then(id => {
@@ -179,7 +179,7 @@ function editPerson(id: number) {
         password: inputs.password.value
     };
 
-    postData(`/people/${id}`, person).then(response => {
+    postData(`${urls.apiPeople}/${id}`, person).then(response => {
         person.password = null;
         if (response.ok) {
             updatePersonRow(id, person);
@@ -208,7 +208,7 @@ function deletePersonRow(id: number) {
 }
 
 function deletePerson(id: number) {
-    deleteData(`/people/${id}`).then(response => {
+    deleteData(`${urls.apiPeople}/${id}`).then(response => {
         if (response.ok) {
             deletePersonRow(id);
             hideDeletePersonDialog();

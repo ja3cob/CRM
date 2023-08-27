@@ -80,7 +80,7 @@ function postTask(inputs) {
         item.assignedToId = null;
     }
 
-    postData("/todoitems", item).then(response => {
+    postData(urls.apiToDoItems, item).then(response => {
         if (!response.ok) {
             console.error("Failed to save data.");
         }
@@ -92,7 +92,7 @@ function postTask(inputs) {
 }
 
 function loadToDoItems(date: Date) {
-    const apiUrl = `/todoitems?year=${date.getFullYear()}&month=${date.getMonth() + 1}`;
+    const apiUrl = urls.apiToDoItems+`?year=${date.getFullYear()}&month=${date.getMonth() + 1}`;
 
     getData(apiUrl).then(toDoItems => {
 
@@ -207,10 +207,8 @@ function generatePercentageCircle(progress: number, small: boolean): Element {
 }
 
 function loadAssignedTo() {
-    const apiUrl = '/people';
-
     const dropDown = document.querySelector('.select-assigned-person');
-    getData(apiUrl).then(people => {
+    getData(urls.apiPeople).then(people => {
         people.forEach((person: Person) => {
             const option = document.createElement('option');
             option.setAttribute('value', person.id.toString());
