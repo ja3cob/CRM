@@ -13,7 +13,7 @@ public class AuthenticationService
     {
         _dbContext = dbContext;
     }
-    public async Task<bool> Login(string? username, string? password, HttpContext context)
+    public async Task<bool> Login(string username, string password, HttpContext context)
     {
         if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
