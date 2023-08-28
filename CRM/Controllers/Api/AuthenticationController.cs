@@ -10,8 +10,8 @@ namespace CRM.Controllers.Api;
 [RouteApiController]
 public class AuthenticationController : Controller
 {
-    private readonly AuthenticationService _service;
-    public AuthenticationController(AuthenticationService service)
+    private readonly AuthService _service;
+    public AuthenticationController(AuthService service)
     {
         _service = service;
     }

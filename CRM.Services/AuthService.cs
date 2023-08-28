@@ -6,16 +6,16 @@ using System.Security.Claims;
 
 namespace CRM.Services;
 
-public class AuthenticationService
+public class AuthService
 {
     private readonly CRMDbContext _dbContext;
-    public AuthenticationService(CRMDbContext dbContext)
+    public AuthService(CRMDbContext dbContext)
     {
         _dbContext = dbContext;
     }
     public async Task<bool> Login(string username, string password, HttpContext context)
     {
-        if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
             throw new ApiException("Username and password must be specified.", System.Net.HttpStatusCode.BadRequest);
         }
@@ -25,7 +25,7 @@ public class AuthenticationService
         {
             return false;
         }
-        if(BCrypt.Net.BCrypt.Verify(password, person.Password))
+        if (BCrypt.Net.BCrypt.Verify(password, person.Password))
         {
             var claims = new List<Claim>
             {
