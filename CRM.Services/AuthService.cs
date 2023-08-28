@@ -39,4 +39,8 @@ public class AuthService
         }
         return false;
     }
+    public async Task Logout(HttpContext context)
+    {
+        await context.SignOutAsync();
+    }
 }

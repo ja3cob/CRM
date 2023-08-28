@@ -26,4 +26,11 @@ public class AuthenticationController : Controller
         }
         return Ok();
     }
+    [HttpPost]
+    [Route("[action]")]
+    public async Task<IActionResult> Logout()
+    {
+        await _service.Logout(HttpContext);
+        return Ok();
+    }
 }
