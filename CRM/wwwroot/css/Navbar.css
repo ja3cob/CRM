@@ -12,7 +12,7 @@
     box-shadow: 0px 0 10px 1px gray;
 }
 
-.navbar * {
+.navbar a {
     text-decoration: none;
     color: var(--color-accent);
 }
@@ -39,4 +39,10 @@
 .navbar-links li:hover {
     /*--color-primary #6495ED*/
     background-color: rgba(100, 149, 237, 0.5);
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
