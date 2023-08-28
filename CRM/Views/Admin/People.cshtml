@@ -57,7 +57,9 @@
                 <input class="input-text" name="password" type="password" />
                 <div class="incorrect-input"><i class="fa-solid fa-xmark"></i></div>
             </div>
-            <button class="btn-save btn btn--primary" type="button" onclick="addPerson()">Zapisz</button>
+            <div class="dialog-buttons">
+                <button class="btn-save btn btn--primary" type="button" onclick="addPerson()">Zapisz</button>
+            </div>
         </form>
     </div>
 </div>
@@ -69,7 +71,7 @@
             <i class="fa fa-times" onclick="hideDeletePersonDialog()"></i>
         </div>
         <h1 class="dialog-title">Na pewno chcesz usunąć?</h1>
-        <div class="person-delete-buttons">
+        <div class="dialog-buttons person-delete-buttons">
             <button class="btn-no btn btn--outline" type="button">Nie</button>
             <button class="btn-yes btn btn--primary" type="button">Tak</button>
         </div>
