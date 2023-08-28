@@ -1,13 +1,18 @@
-﻿<nav class="navbar">
+﻿@using CRM.Models;
+
+<nav class="navbar">
     <a href="/">Witaj</a>
     <div class="navbar-menu">
         <ul class="navbar-links">
             <li>
                 <a href="/">Strona główna</a>
             </li>
-            <li>
-                <a href="/people">Użytkownicy</a>
-            </li>
+            @if (User.IsInRole(nameof(Role.Admin)))
+            {
+                <li>
+                    <a href="/people">Użytkownicy</a>
+                </li>
+            }
         </ul>
     </div>
     <div class="navbar-user">

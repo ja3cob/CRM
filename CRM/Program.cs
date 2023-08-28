@@ -24,6 +24,7 @@ namespace CRM
                 {
                     options.Cookie.Name = Cookies.Identity;
                     options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                    options.AccessDeniedPath = "/";
                 });
             builder.Services.AddAuthorization(options =>
             {
