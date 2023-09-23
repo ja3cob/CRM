@@ -17,10 +17,27 @@
             }
         </ul>
     </div>
-    <div class="navbar-user">
-        <span>Test</span>
-        <button class="btn-logout btn btn--outline" onclick="logout()">Wyloguj</button>
+    <div class="navbar-user" onclick="toggleUserMenu()">
+        <i class="fa-regular fa-user"></i>
+    </div>
+    <div class="navbar-user-menu">
+        <div class="user-menu-name">Test</div>
+        <div class="user-menu-buttons"></div>
+        <div class="user-menu-logout">
+            <button class="btn btn--primary btn-logout" onclick="logout()">Wyloguj</button>
+        </div>
     </div>
 </nav>
 
 <script src="~/js/Logout.js"></script>
+<script>
+    function toggleUserMenu() {
+        const menu = document.querySelector(".navbar-user-menu");
+        if (menu.classList.contains("shown")) {
+            menu.classList.remove("shown");
+        }
+        else {
+            menu.classList.add("shown");
+        }
+    }
+</script>
