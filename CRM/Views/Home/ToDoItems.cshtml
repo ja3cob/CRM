@@ -78,12 +78,16 @@
     <script src="~/js/ToDoItems.js"></script>
     <script src="~/js/MonthGenerator.js"></script>
     <script>
-        loadCalendar();
+        loadToDoItemsPage();
 
         window.addEventListener('popstate', function (event) {
             loadCalendar();
         });
 
+        function loadToDoItemsPage() { 
+            loadCalendar();
+            loadAssignedTo();
+        }
         function loadCalendar() {
             const currentDate = getCurrentDate();
             const calendar = document.querySelector(".calendar-body");
@@ -94,7 +98,6 @@
 
             loadDays(generateMonth(currentDate), calendar);
             loadToDoItems(currentDate);
-            loadAssignedTo();
         }
         function changeMonth(change) {
             const currentDate = getCurrentDate();
